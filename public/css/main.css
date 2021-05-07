@@ -1,106 +1,161 @@
-html, body {
-    font-family: "Press Start 2P";
-}
-body, .jumbotron {
-    padding: 30px;
-    background-color: rgb(255, 255, 255);
-}
-.text-giant {
-    font-size: 40px;
-}
-.text-right {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background: #1f1a25;
+  }
+  
+  .board {
     position: absolute;
-    top: 30px;
-    right: 30px;
-    width: 550px;
+    transform: translate(-15%, 0);
+    top: 5%;
+    left: 15%;
+    height: 90vh;
+    width: 90vh;
+    background: url("../images/board.png");
+    background-size: contain;
+    z-index: -1;
+  }
+  
+  .container {
+    position: absolute;
+    transform: translate(-15%, 0);
+    top: 5%;
+    left: 15%;
+    width: 90vh;
+    height: 90vh;
+    z-index: 1;
+  }
+  
+  .dice {
+    position: absolute;
+    right: 25%;
+    bottom: 10%;
+  }
+  
+  .dice img {
+    width: 70%;
+    height: auto;
+  }
+  
+  .draw-border {
+    box-shadow: inset 0 0 0 4px #58afd1;
+    color: #58afd1;
+    transition: color 0.25s 0.0833333333s;
+    position: relative;
+  }
+  .draw-border::before,
+  .draw-border::after {
+    border: 0 solid transparent;
+    box-sizing: border-box;
+    content: "";
     pointer-events: none;
-}
-.text-left {
     position: absolute;
-    top: 30px;
-    left: 30px;
-    width: 550px;
-    pointer-events: none;
-}
-.btn-crazy {
-    display: none;
+    width: 0;
+    height: 0;
+    bottom: 0;
+    right: 0;
+  }
+  .draw-border::before {
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+  }
+  .draw-border::after {
+    border-top-width: 4px;
+    border-right-width: 4px;
+  }
+  .draw-border:hover {
+    color: #ffe593;
+  }
+  .draw-border:hover::before,
+  .draw-border:hover::after {
+    border-color: #ffe593;
+    transition: border-color 0s, width 0.25s, height 0.25s;
+    width: 100%;
+    height: 100%;
+  }
+  .draw-border:hover::before {
+    transition-delay: 0s, 0s, 0.25s;
+  }
+  .draw-border:hover::after {
+    transition-delay: 0s, 0.25s, 0s;
+  }
+  
+  .btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1.5;
+    padding: 1em 2em;
+    font: 700 1.2rem "Roboto Slab", sans-serif;
+    letter-spacing: 0.05rem;
+  }
+  .btn:focus {
+    outline: 2px dotted #55d7dc;
+  }
+  
+  #roll-button {
     position: absolute;
-    top: 43%;
-    left: 46%;
-    transition: 0.1s ease all;
-
-    width: 100px;
-    height: 100px;
-}
-.btn-start {
+    right: 18%;
+    bottom: 16%;
+  }
+  
+  .form-input {
+    font-family: "Roboto", sans-serif;
+    color: #333;
+    font-size: 1.3rem;
+    padding: 1.5rem 2rem;
+    position: absolute;
+    top: 10%;
+    right: 19%;
+    border-radius: 0.4rem;
+    background-color: rgb(240, 233, 233);
+    border: none;
+    width: 20%;
     display: block;
+    transition: all 0.5s;
+  }
+  
+  #start-btn {
     position: absolute;
-    top: 40%;
-    left: 45%;
-    transition: 0.1s ease all;
-    background: white;
-    color: black;
-    border: 3px solid black;
-
-    width: 150px;
-    height: 150px;
-
-}
-.time {
-    font-size: 60px;
+    top: 11%;
+    right: 8%;
+    font-size: 1rem;
+  }
+  
+  #players-box {
     position: absolute;
-    top: 30px;
-    left: 46%;
-    pointer-events: none;
-}
-.score {
-    font-size: 60px;
-    pointer-events: none;
-    border-bottom: 2px solid black;
-    padding-left: 10px;
-    padding-top: 10px;
-    padding-right: 10px;
-}
-.high-score {
-    font-size: 60px;
+    top: 25%;
+    right: 19%;
+    color: azure;
+    font-size: 1.6rem;
+    font-family: "Roboto Slab", sans-serif;
+  }
+  
+  #current-player {
     position: absolute;
-    bottom: 30px;
-    left: 2%;
-    pointer-events: none;
-    border-top: 2px solid black;
-    border-right: 2px solid black;
-    padding-left: 10px;
-    padding-top: 10px;
-    padding-right: 10px;
-    -webkit-text-stroke: 2px rgb(0, 0, 0);
-    -webkit-text-fill-color: rgb(255, 255, 255);
-}
-.my-time-text {
-    font-size: 30px;
-    pointer-events: none;
-    -webkit-text-stroke: 1px rgb(0, 0, 0);
-    -webkit-text-fill-color: rgb(255, 255, 255);
-    animation: shake .2s infinite;
-}
-@keyframes shake {
-10%, 90% {
-    transform: translate3d(-1px, 0, 0);
-}
-
-20%, 80% {
-    transform: translate3d(1px, 1px, 0);
-}
-
-30%, 50%, 70% {
-    transform: translate3d(-3px, -1px, 0);
-}
-
-40%, 60% {
-    transform: translate3d(3px, 0, 0);
-}
-}
-.home-btn {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-}
+    bottom: 35%;
+    right: 25%;
+    color: azure;
+    font-size: 1.4rem;
+    font-family: "Roboto Slab", sans-serif;
+    text-align: center;
+  }
+  
+  #restart-btn {
+    position: absolute;
+    right: 20%;
+    bottom: 16%;
+  }
+  
+  #players-table img {
+    height: 40px;
+    width: 30px;
+  }
+  
+  #players-table td {
+    padding-right: 20px;
+  }
