@@ -22,7 +22,7 @@ loginButtonEl.addEventListener('click', async (event) => {
       });
 
       if (response.ok) {
-        alert('Login Succesful');
+        // alert('Login Succesful');
         document.location.replace('/draftpage');
       } else {
         alert(response.statusText);
