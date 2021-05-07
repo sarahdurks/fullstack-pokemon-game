@@ -1,5 +1,5 @@
 // Making Connection
-const socket = io.connect("http://localhost:3000");
+const socket = io.connect("https://stormy-harbor-07472.herokuapp.com/");
 socket.emit("joined");
 
 let players = []; // All players in the game
