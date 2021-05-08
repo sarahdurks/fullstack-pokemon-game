@@ -1,15 +1,21 @@
+//https://dev.to/nitdgplug/learn-the-basics-of-socket-io-by-making-a-multiplayer-game-394g
+// ^ referenced to start understanding
 // Making Connection
+// functions when this has local host
+// need to trouble shoot heroku version, things crash
 const socket = io.connect("https://stormy-harbor-07472.herokuapp.com/");
 socket.emit("joined");
 
-let players = []; // All players in the game
-let currentPlayer; // Player object for individual players
+// https://socket.io/get-started/chat
 
+let players = []; // All in the room
+let currentPlayer; // Player object for individual players
+//playing area
 let canvas = document.getElementById("canvas");
 canvas.width = document.documentElement.clientHeight * 0.9;
 canvas.height = document.documentElement.clientHeight * 0.9;
 let ctx = canvas.getContext("2d");
-
+// icons used to represent playres 
 const redBallImg = "../images/red-ball.png";
 const blueBallImg = "../images/blue-ball.png";
 const yellowBallImg = "../images/yellow-ball.png";
@@ -57,6 +63,7 @@ class Player {
         : canvas.width - ((this.pos % 10) * side + offsetX + 15);
     let yPos = canvas.height - (Math.floor(this.pos / 10) * side + offsetY);
 
+    // just adding new urser
     let image = new Image();
     image.src = this.img;
     ctx.drawImage(image, xPos, yPos, 30, 40);
@@ -89,7 +96,7 @@ class Player {
     return newPos;
   }
 }
-
+// we can reference this for our buttons/back and forth
 document.getElementById("start-btn").addEventListener("click", () => {
   const name = document.getElementById("name").value;
   document.getElementById("name").disabled = true;
@@ -102,6 +109,7 @@ document.getElementById("start-btn").addEventListener("click", () => {
   socket.emit("join", currentPlayer);
 });
 
+// we can reference this for our buttons/back and forth
 document.getElementById("roll-button").addEventListener("click", () => {
   const num = rollDice();
   currentPlayer.updatePos(num);
@@ -111,12 +119,12 @@ document.getElementById("roll-button").addEventListener("click", () => {
     pos: currentPlayer.pos,
   });
 });
-
+// key game function
 function rollDice() {
   const number = Math.ceil(Math.random() * 6);
   return number;
 }
-
+// change the canvas so user understands role resutl
 function drawPins() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -126,6 +134,7 @@ function drawPins() {
 }
 
 // Listen for events
+// new player joining and show on screen
 socket.on("join", (data) => {
   players.push(new Player(players.length, data.name, data.pos, data.img));
   drawPins();
@@ -149,7 +158,7 @@ socket.on("rollDice", (data, turn) => {
   players[data.id].updatePos(data.num);
   document.getElementById("dice").src = `./images/dice/dice${data.num}.png`;
   drawPins();
-
+// if we get to turns, back and forth logic  example with hidden buttons on turns/innter html 
   if (turn != currentPlayer.id) {
     document.getElementById("roll-button").hidden = true;
     document.getElementById(
@@ -161,7 +170,7 @@ socket.on("rollDice", (data, turn) => {
       "current-player"
     ).innerHTML = `<p>It's your turn</p>`;
   }
-
+// logic to end
   let winner;
   for (let i = 0; i < players.length; i++) {
     if (players[i].pos == 99) {
@@ -169,7 +178,7 @@ socket.on("rollDice", (data, turn) => {
       break;
     }
   }
-
+// logic to indicate winner on the page itself and display
   if (winner) {
     document.getElementById(
       "current-player"
@@ -184,6 +193,7 @@ socket.on("rollDice", (data, turn) => {
 document.getElementById("restart-btn").addEventListener("click", () => {
   socket.emit("restart");
 });
+// this was not working, but restart logic and end
 
 socket.on("restart", () => {
   window.location.reload();
