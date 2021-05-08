@@ -8,6 +8,8 @@ const app = express();
 const PORT = 3000 || process.env.PORT;
 
 // Return a new instance of the http.Server class
+
+//https://nodejs.dev/learn/the-nodejs-http-module also described here
 const server = http.createServer(app);
 
 // Set static folder
@@ -32,6 +34,7 @@ io.on("connection", (socket) => {
     socket.emit("joined", users);
   });
 // trigger socket on key game action/function, "roll dice"
+// turn taking logic (id + 1)
   socket.on("rollDice", (data) => {
     users[data.id].pos = data.pos;
     const turn = data.num != 6 ? (data.id + 1) % users.length : data.id;

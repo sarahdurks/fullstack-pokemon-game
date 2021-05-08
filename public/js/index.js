@@ -3,7 +3,7 @@
 // Making Connection
 // functions when this has local host
 // need to trouble shoot heroku version, things crash
-const socket = io.connect("https://stormy-harbor-07472.herokuapp.com/");
+const socket = io.connect("http://localhost:3000/");
 socket.emit("joined");
 
 // https://socket.io/get-started/chat
@@ -24,9 +24,9 @@ const greenBallImg = "../images/green-ball.png";
 const side = canvas.width / 10;
 const offsetX = side / 2;
 const offsetY = side / 2 + 20;
-
+// maybe we can use this, like the football helmets, for teams?
 const images = [redBallImg, blueBallImg, yellowBallImg, greenBallImg];
-
+//only matters to winning condition
 const ladders = [
   [2, 23],
   [4, 68],
@@ -47,6 +47,7 @@ const snakes = [
   [50, 5],
   [43, 17],
 ];
+//Player object requires an id, a name, a position on the board 
 
 class Player {
   constructor(id, name, pos, img) {
@@ -105,7 +106,7 @@ document.getElementById("start-btn").addEventListener("click", () => {
   currentPlayer = new Player(players.length, name, 0, images[players.length]);
   document.getElementById(
     "current-player"
-  ).innerHTML = `<p>Anyone can roll</p>`;
+  ).innerHTML = `<p>Anyone can draft</p>`;
   socket.emit("join", currentPlayer);
 });
 
@@ -124,7 +125,7 @@ function rollDice() {
   const number = Math.ceil(Math.random() * 6);
   return number;
 }
-// change the canvas so user understands role resutl
+// change the canvas so user understands role result
 function drawPins() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -142,7 +143,7 @@ socket.on("join", (data) => {
     "players-table"
   ).innerHTML += `<tr><td>${data.name}</td><td><img src=${data.img} height=50 width=40></td></tr>`;
 });
-
+// show others that this happened
 socket.on("joined", (data) => {
   data.forEach((player, index) => {
     players.push(new Player(index, player.name, player.pos, player.img));
@@ -158,19 +159,20 @@ socket.on("rollDice", (data, turn) => {
   players[data.id].updatePos(data.num);
   document.getElementById("dice").src = `./images/dice/dice${data.num}.png`;
   drawPins();
-// if we get to turns, back and forth logic  example with hidden buttons on turns/innter html 
+  // if we get to turns, back and forth logic  example with hidden buttons on turns/innter html 
   if (turn != currentPlayer.id) {
     document.getElementById("roll-button").hidden = true;
     document.getElementById(
       "current-player"
+      //display player who has current turn
     ).innerHTML = `<p>It's ${players[turn].name}'s turn</p>`;
   } else {
     document.getElementById("roll-button").hidden = false;
     document.getElementById(
       "current-player"
-    ).innerHTML = `<p>It's your turn</p>`;
+    ).innerHTML = `<p>Pick for your team! Your turn. </p>`;
   }
-// logic to end
+  // logic to end
   let winner;
   for (let i = 0; i < players.length; i++) {
     if (players[i].pos == 99) {
@@ -178,7 +180,7 @@ socket.on("rollDice", (data, turn) => {
       break;
     }
   }
-// logic to indicate winner on the page itself and display
+  // logic to indicate winner on the page itself and display
   if (winner) {
     document.getElementById(
       "current-player"
@@ -194,7 +196,6 @@ document.getElementById("restart-btn").addEventListener("click", () => {
   socket.emit("restart");
 });
 // this was not working, but restart logic and end
-
 socket.on("restart", () => {
   window.location.reload();
 });

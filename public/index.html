@@ -1,50 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pokémon Socket.io Test</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Montserrat"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./css/main.css" />
-  </head>
-  <body>
-    <div class="board"></div>
-    <img src="images/red-ball.png" alt="" hidden="true" id="red-ball" />
-    <img src="images/blue-ball.png" alt="" hidden="true" id="blue-ball" />
-    <img src="images/yellow-ball.png" alt="" hidden="true" id="yellow-ball" />
-    <img src="images/green-ball.png" alt="" hidden="true" id="green-ball" />
-    <div class="container">
-      <canvas id="canvas"></canvas>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pokémon Socket.io Test</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/main.css" />
+ 
+</head>
+
+<body>
+  <div class="board"></div>
+  <img src="images/red-ball.png" alt="player 1 red" hidden="true" id="red-ball" />
+  <img src="images/blue-ball.png" alt="player 2 blue" hidden="true" id="blue-ball" />
+  <img src="images/yellow-ball.png" alt="player 3 yellow" hidden="true" id="yellow-ball" />
+  <img src="images/green-ball.png" alt="player 4 green" hidden="true" id="green-ball" />
+  <div class="container">
+
+  <!--core game play board area, we could have this be the visual team built equivalent-->
+    <canvas id="canvas"></canvas>
+  </div>
+  <!--enter name to join game-->
+  <!--triggers showing new player, socket id-->
+  <div class="info-box">
+    <div class="form-group">
+      <input type="text" class="form-input" id="name" placeholder="Enter your team name"/>
+      <button class="btn draw-border" id="start-draft">Join Draft</button>
     </div>
-    <div class="info-box">
-      <div class="form-group">
-        <input
-          type="text"
-          class="form-input"
-          id="name"
-          placeholder="Enter your team name"
-          required
-        />
-        <button class = "btn draw-border" id="start-btn">Join</button>
-      </div>
-    </div>
-    <div id="players-box">
-      <h3>Players currently online:</h3>
-      <br>
-      <table id="players-table"></table>
-    </div>
-    <div id="current-player"></div>
-    <button class="btn draw-border" id="roll-button" hidden>Roll</button>
-    <div class="dice">
-      <img src="./images/dice/dice1.png" alt="" id="dice" />
-    </div>
+  </div>
+
+  <!--area showing others online-->
+  <!--short term, could have first player only be active "drafter (?)"-->
+  <div id="players-box">
+    <h3>Pokefans Online</h3>
+    <br>
+    <table id="players-table"></table>
+  </div>
+  <div id="current-player"></div>
+  <!--Equivalent to draft action-->
+  <button class="btn draw-border" id="roll-button" hidden>Roll or "Draft"</button>
+    <!--Shows consequence of main game button action-->
+  <div class="dice">
+    <img src="./images/dice/dice1.png" alt="starter dice for game play action" id="dice" />
+  </div>
+  <!--What SHOULD restart game and socket (?) but issues with show/hide logic-->
     <button class="btn draw-border" id="restart-btn" hidden>Restart</button>
 
-   <!--scripts-->
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="js/index.js"></script>
-  </body>
+  <!--scripts-->
+  <!---enable socket commungication to communicate with the back-end express server from fe-->
+  <script src="/socket.io/socket.io.js"></script>
+  <!--this script should hold the game logic +code for socket communication ACROSS clients-->
+  <script src="js/index.js"></script>
+</body>
+
 </html>
