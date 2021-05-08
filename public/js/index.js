@@ -10,16 +10,16 @@ canvas.width = document.documentElement.clientHeight * 0.9;
 canvas.height = document.documentElement.clientHeight * 0.9;
 let ctx = canvas.getContext("2d");
 
-const redPieceImg = "../images/red_piece.png";
-const bluePieceImg = "../images/blue_piece.png";
-const yellowPieceImg = "../images/yellow_piece.png";
-const greenPieceImg = "../images/green_piece.png";
+const redBallImg = "../images/red-ball.png";
+const blueBallImg = "../images/blue-ball.png";
+const yellowBallImg = "../images/yellow-ball.png";
+const greenBallImg = "../images/green-ball.png";
 
 const side = canvas.width / 10;
 const offsetX = side / 2;
 const offsetY = side / 2 + 20;
 
-const images = [redPieceImg, bluePieceImg, yellowPieceImg, greenPieceImg];
+const images = [redBallImg, blueBallImg, yellowBallImg, greenBallImg];
 
 const ladders = [
   [2, 23],
