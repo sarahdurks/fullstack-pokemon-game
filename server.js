@@ -6,6 +6,7 @@ const exphbs = require('express-handlebars');
 const hbs = exphbs.create({ extname: 'hbs', defaultLayout: 'main'});
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const morgan = require('morgan');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -24,6 +25,7 @@ app.use(session(sess));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(routes);
+app.use(morgan("combined"));
 
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');

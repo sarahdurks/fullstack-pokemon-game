@@ -14,10 +14,11 @@ router.get('/', sessionAuth, (req, res) => {
             }]
     })
         .then(teamData => {
+            console.log("heyo this is annoying")
             if (teamData) {
                 const team = teamData.get({ plain: true });
                 res.render('team', { team, loggedIn: true });
-            }
+            } else res.status(400)
         })
         .catch(e => {
             console.log(e)

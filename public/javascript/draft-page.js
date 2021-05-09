@@ -1,12 +1,31 @@
+// const { response } = require("express");
 
 // DOM Selection
 let PokemonBtnEl = document.querySelector("#listen");
 const pokeTeam = []
 const draftTeamBtnEl = document.querySelector('#draft-team');
 
-// console.log (pokeTeam);
-
 //ISSUES
+// async function getPokeTeamData () {
+//     let apiTeam = fetch("api/team" , {
+//         method: "GET",
+//         body: JSON.stringify({
+//             team_id,
+//             team_name,
+//             pokemon_count
+//         }),
+//         headers: {
+//             "Content-Type": "application/json"
+//         }
+//     });
+    
+//     if (data.ok) {
+//         console.log(apiTeam);
+//     } else {
+//         alert(data.statusText);
+//     }
+// };
+// getPokeTeamData();
 
 //Team ID hardcoded
 // https://github.com/sarahdurks/fullstack-pokemon-game/issues/12
