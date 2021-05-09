@@ -13,9 +13,9 @@ Pokemon.belongsTo(User, { foreignKey: 'user_id' });
 
 Team.belongsTo(User, { foreignKey: 'user_id' });
 
-// Pokemon.belongsTo(Team, { foreignKey: 'team_id' });
+Pokemon.belongsTo(Team, { foreignKey: 'team_id' });
 
-// Team.hasMany(Pokemon, { foreignKey: 'team_id' });
+Team.hasMany(Pokemon, { foreignKey: 'team_id' });
 
 Highscore.belongsTo(User, { foreignKey: `user_id` });
 

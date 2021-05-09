@@ -33,11 +33,11 @@ Team.init(
                 key: 'id',
                 deferrable: Deferrable.INITIALLY_IMMEDIATE
             }
+        },
+        team_count: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
         }
-        // team_count: {
-        //     type: DataTypes.INTEGER,
-        //     defaultValue: 0,
-        // }
     },
     {
         sequelize,

@@ -7,11 +7,11 @@ router.get('/', sessionAuth, (req, res) => {
 
     Team.findOne({
         where: { user_id: req.session.user_id },
-        // include: [
-        //     {
-        //         model: Pokemon,
-        //         attributes: ['pokedex', 'pokemon_name', 'pokemon_pic', 'hp', 'attack', 'defense', 'speed'],
-        //     }]
+        include: [
+            {
+                model: Pokemon,
+                attributes: ['pokedex', 'pokemon_name', 'pokemon_pic', 'hp', 'attack', 'defense', 'speed'],
+            }]
     })
         .then(teamData => {
             if (teamData) {

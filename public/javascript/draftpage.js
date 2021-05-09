@@ -1,32 +1,23 @@
 let buttonEl = document.querySelector("#listen");
 let pokeTeam = []
 
-// fetch(`/api/team`, {
-//     method: 'POST',
-//     body: JSON.stringify({
-//         pokedex,
-//         pokemon_name,
-//         pokemon_pic,
-//         hp,
-//         attack,
-//         defense,
-//         speed
-//     }),
-//     headers: {
-//         'Content-Type': 'application/json'
-//     }
-// })
-// .then(response => {
-//     if (response.ok) {
-//         pokeTeam.push(response);
-//     } 
-// })
-// .catch (e => {
-// console.log(e);
-// alert(response.statusText);
-// });
+fetch(`/api/pokemons`, {
+    method: 'get',
+    headers: {
+        'Content-Type': 'application/json'
+    }
+})
+.then(response => {
+    if (response.ok) {
+        pokeTeam.push(response);
+    } 
+})
+.catch (e => {
+console.log(e);
+alert(response.statusText);
+});
 
-// console.log (pokeTeam);
+console.log (pokeTeam);
 
 
 
