@@ -1,107 +1,73 @@
 const router = require('express').Router();
-const { User, Pokemon, Team } = require('../../models');
+const { Team, Pokemon } = require('../../models');
 const sessionAuth = require('../../utils/auth');
-const { QueryTypes } = require('sequelize');
 
-// GET /api/team
-router.get('/', async (req, res) => {
-    try {
-      const teamData = await Team.findAll();
-      res.status(200).json(teamData);
-    }
-    catch (e) {
-      res.status(400).json({ Error: e });
-    }
-  });
-  
-  // GET /api/team/id
-  router.get('/:id', async (req, res) => {
-    try {
-      const teamId = req.params;
-      const teamData = await Pokemon.findAll({
-        where: { team_id: teamId }
-      });
-      console.log(req.session.user_id);
-      if (!teamData) {
-        Team.create({
-            team_name: "Name your Team",
-            pokemon_count: 0,
-            user_id: req.session.user_id
-        }).then(team => {
-            teamData = team; 
-            return team;
+// GET /team
+router.get('/', sessionAuth, (req, res) => {
+    Team.findOne({
+        where: { user_id: req.session.user_id },
+        include: [
+            {
+                model: Pokemon,
+                attributes: ['pokedex', 'pokemon_name', 'pokemon_pic', 'hp', 'attack', 'defense', 'speed'],
+            }]
+    })
+        .then(teamData => {
+            console.log("I will figure this out!")
+            if (teamData) {
+                const team = teamData.get({ plain: true });
+                res.status(200).json(team);
+                console.log(team)
+            } else res.status(400)
         })
-      res.status(200).json(teamData);
-    }}
-    catch (e) {
-      console.log(e)
-      res.status(400).json({ Error: e });
-    }
-  });
-  
-  // // GET /api/pokemons/pokedex
-  // router.get('/pokedex', async (req, res) => {
-  //   try {
-  //     const allPokedex = await sequelize.query("SELECT pokedex FROM pokemon", { type: QueryTypes.SELECT });
-  //     console.log(allPokedex);
-  //     // res.status(200).send(allPokedex);
-  //   }
-  //   catch (e) {
-  //     res.status(400).json({ Error: e });
-  //   }
-  // });
-  
-  // POST /api/pokemons/
-  router.post('/', sessionAuth, (req, res) => {
-  
-    Pokemon.create({
-      pokedex: req.body.pokedex,
-      pokemon_name: req.body.pokemon_name,
-      pokemon_pic: req.body.pokemon_pic,
-      hp: req.body.hp,
-      attack: req.body.attack,
-      defense: req.body.defense,
-      speed: req.body.speed,
-      user_id: req.session.user_id
+        .catch(e => {
+            console.log(e)
+            res.status(400).json({ Error: e });
+        });
+});
+
+// POST team
+router.post('/', sessionAuth, (req, res) => {
+    Team.create({
+        team_name: req.body.team_name,
+        team_logo: req.body.team_logo,
+        user_id: req.session.user_id,
     })
-      .then(pokemonData => res.status(200).json(pokemonData))
-      .catch(e => {
-        console.log(e);
-        res.status(400).json({ Error: e });
-      });
-  });
-  
-  // POST /api/pokemons/team
-  router.post('/team', sessionAuth, (req, res) => {
-    const { pokeTeam } = req.body
-    // console.log (pokeTeam);
-    Pokemon.bulkCreate(pokeTeam)
-      .then(pokemonData => res.status(200).json(pokemonData))
-      .catch(e => {
-        console.log(e);
-        res.status(400).json({ Error: e });
-      });
-  })
-  
-  // DELETE /api/pokemons/id
-  router.delete('/:id', sessionAuth, (req, res) => {
-    console.log('delete route hit');
-    Pokemon.destroy({
-      where: {
-        pokedex: req.params.id
-      }
-    })
-      .then(pokemonData => {
-        if (!pokemonData) {
-          return res.status(404).json({ message: 'Pokemon not found on your team' });
+        .then(teamData => {
+            req.session.save(() => {
+                req.session.team_id = teamData.id;
+                req.session.team_name = teamData.team_name;
+                const team = teamData.get({ plain: true });
+                res.render('team', { team, loggedIn: true });
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
+
+// DELETE team
+router.delete('/:id', sessionAuth, (req, res) => {
+    Team.destroy({
+        where: {
+            id: req.params.id
         }
-        res.status(200).json(`${pokemonData} removed from your team`);
-      })
-      .catch(e => {
-        console.log(e);
-        res.status(400).json({ Error: e });
-      });
-  });
-  
-  module.exports = router;
+    })
+        .then(teamData => {
+            if (teamData) {
+                const team = teamData.get({ plain: true });
+                res.render('team', { team, loggedIn: true });
+            } else {
+                res.render('team', { team: false, loggedIn: true });
+            }
+        })
+        .catch(e => {
+            console.log(e)
+            res.status(400).json({ Error: e });
+        });
+});
+
+
+module.exports = router;
   

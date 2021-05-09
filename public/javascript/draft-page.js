@@ -53,6 +53,9 @@ PokemonBtnEl.addEventListener("click", (event) => {
             // find a way to include team id in the array to bulk create
         }
         pokeTeam.push(thisPokemon);
+        localStorage.clear();
+        
+        
         console.log(pokeTeam);
     }
 
