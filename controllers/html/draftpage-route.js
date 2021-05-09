@@ -19,23 +19,23 @@ const promisifedPingApi = new Promise ((resolve, reject) => {
   }, 500);
 });
 
-Promise.race([
-    promisifedPingApi,
-    new Promise((_, reject) => {
-      setTimeout(() => reject('Timeout!'), 500);
-      (function () {
-        setInterval(function () {
-          getRandomWord();
-        }, 1000 * 60 * 60 * 24);
-      }) ();
-    })
-  ]).then(res => {
-      console.log('response: ', res);
-  })
-    .catch(e => {
-      console.error('error: ', e);
-      clearTimeout(id);
-    });
+// Promise.race([
+//     promisifedPingApi,
+//     new Promise((_, reject) => {
+//       setTimeout(() => reject('Timeout!'), 500);
+//       (function () {
+//         setInterval(function () {
+//           getRandomWord();
+//         }, 1000 * 60 * 60 * 24);
+//       }) ();
+//     })
+//   ]).then(res => {
+//       console.log('response: ', res);
+//   })
+//     .catch(e => {
+//       console.error('error: ', e);
+//       clearTimeout(id);
+//     });
 
 // End of Function to fetch pokemon every 24hrs
 
