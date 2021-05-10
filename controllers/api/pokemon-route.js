@@ -37,7 +37,7 @@ router.get('/', async (req, res) => {
 router.get('/pokedex', (req, res) => {
   Pokemon.findOne({
     where: {
-      pokedex: req.params
+      pokedex: req.params.pokedex
     },
     include: [
       {

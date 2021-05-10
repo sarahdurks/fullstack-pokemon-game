@@ -8,39 +8,18 @@ let team_id;
 let pokemons;
 const draftTeamBtnEl = document.querySelector('#draft-team');
 
-// console.log (pokeTeam);
 
-//ISSUES
-
-//Team ID hardcoded
-// https://github.com/sarahdurks/fullstack-pokemon-game/issues/12
-// const getTeamData = function() {
 fetch("/api/team")
     .then(response => response.json())
     .then(data => {
         team_id = data.id;
         // let pokemons = data.pokemons;
         let count = 6 - (data.pokemons.length);
-        console.log(count);
+        // console.log(count);
         dbTeam.push(team_id);
         dbTeam.push(count);
-
-        // console.log(team_id);
-        // console.log(pokemons);
-        
-    });
-    console.log(dbTeam);
-// .then(data => console.log(data))
-// let team_id = data.id;
-// let pokemons = data.pokemons;
-// console.log(team_id);
-// console.log(pokemons);
-// };
-
-// getTeamData();
-// console.log(team_id);
-//Pokemon count should be incremental, ties to here and the team model
-//https://github.com/sarahdurks/fullstack-pokemon-game/issues/10
+});
+    // console.log(dbTeam);
 
 // Listening for button click to draft each pokemon
 PokemonBtnEl.addEventListener("click", (event) => {
@@ -59,7 +38,7 @@ PokemonBtnEl.addEventListener("click", (event) => {
             defense: pokeInfo[5],
             speed: pokeInfo[6],
             team_id: dbTeam[0]
-            // find a way to include team id in the array to bulk create
+
         }
         pokeTeam.push(thisPokemon);
         console.log(pokeTeam);
@@ -79,11 +58,11 @@ draftTeamBtnEl.addEventListener('click', event => {
         }
     })
         .then(response => {
-            // return response.json();
             if (response.ok) {
                 alert(`Pokemon Draft Completed!`);
                 document.location.replace('/team');
-            }
+            } 
+            // else (disable all buttons)
         })
         // .then (response => {
         // console.log(response);
@@ -97,9 +76,28 @@ draftTeamBtnEl.addEventListener('click', event => {
 
 
 // to do
-// 1. Event listener for clear draft button
-// 2. A way to get team_id and pokemon_count on line 25 and line 12 instead of hardcoding
-// 3. Change the pokemon_count as a function to count the pokemon in the team
+//* draftpage.js
+// 1. Event listener for clear draft button Jana
+// 2. Already drafted, should say already drafted, not dependant on button click Megan
+//    and compare pokedex from database to pokeapi to "already drafted"
+// 3. if logged in but no team, disable functionality Jana
+// 4. if dbTeam[1] <0, then disable draft buttons. Megan/Jana
+
+//* teampage.js (also .hbs)
+//1. create a form for team creating **team name/team-logo (.hbs) Sarah
+//2. button click listener for create team (do a post request for .html route team (/team)) Sarah
+
+//* draftpage-route
+//1. fetch request from our pokedex and compare to the random 20 so we don't repeat. 
+//2. time issue-every 24 hours. *Yev
+
+//* change header/nav bar so that options available are only there based on status of user 
+
+//* finally, present! 
+
+
+
+
 
 
 
