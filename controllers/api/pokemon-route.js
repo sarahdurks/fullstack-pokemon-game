@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Pokemon } = require('../../models');
+const { Pokemon, Team } = require('../../models');
 const sessionAuth = require('../../utils/auth');
 const { QueryTypes } = require('sequelize');
 
@@ -15,35 +15,51 @@ router.get('/', async (req, res) => {
 });
 
 // GET /api/pokemons/id
-router.get('/:id', async (req, res) => {
+// router.get('/:id', async (req, res) => {
 
-  try {
-    const { pokedex } = req.params;
-    const pokemonById = await Pokemon.findOne({
-      where: { pokedex }
-    });
-    if (!pokemonById) {
-      return res.status(404).json({ message: 'No pokemon found with this id' });
-    }
-    res.status(200).json(pokemonById);
-  }
-  catch (e) {
-    console.log(e)
-    res.status(400).json({ Error: e });
-  }
-});
-
-// // GET /api/pokemons/pokedex
-// router.get('/pokedex', async (req, res) => {
 //   try {
-//     const allPokedex = await sequelize.query("SELECT pokedex FROM pokemon", { type: QueryTypes.SELECT });
-//     console.log(allPokedex);
-//     // res.status(200).send(allPokedex);
+//     const { pokedex } = req.params;
+//     const pokemonById = await Pokemon.findOne({
+//       where: { pokedex }
+//     });
+//     if (!pokemonById) {
+//       return res.status(404).json({ message: 'No pokemon found with this id' });
+//     }
+//     res.status(200).json(pokemonById);
 //   }
 //   catch (e) {
+//     console.log(e)
 //     res.status(400).json({ Error: e });
 //   }
 // });
+
+// GET /api/pokemons/pokedex
+router.get('/pokedex', (req, res) => {
+  Pokemon.findOne({
+    where: {
+      pokedex: req.params
+    },
+    include: [
+      {
+        model: Team,
+        include: {
+          model: User
+        }
+      }
+    ]
+  })
+  .then(dbpokeData => {
+    if(!dbpokeData) {
+      res.status(400).json({ message: "No pokemon found with this pokedex" });
+      return;
+    }
+    res.json(dbpokeData)
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
 
 // POST /api/pokemons/
 router.post('/', sessionAuth, (req, res) => {
