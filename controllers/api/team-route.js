@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const { Team, Pokemon } = require('../../models');
 const sessionAuth = require('../../utils/auth');
+const { QueryTypes } = require('sequelize');
 
 // GET /team
 router.get('/', sessionAuth, (req, res) => {
-    console.log(req.session.user_id);
     Team.findOne({
         where: { user_id: req.session.user_id },
         include: [
@@ -12,15 +12,13 @@ router.get('/', sessionAuth, (req, res) => {
                 model: Pokemon,
                 attributes: ['pokedex', 'pokemon_name', 'pokemon_pic', 'hp', 'attack', 'defense', 'speed'],
             }]
+            
     })
         .then(teamData => {
             if (teamData) {
                 const team = teamData.get({ plain: true });
-                console.log(team);
-                res.render('team', { team, loggedIn: true });
-            } else {
-                res.render('team', { team: false, loggedIn: true });
-            }
+                res.status(200).json(team);
+            } else res.status(400).json('NO team yet!')
         })
         .catch(e => {
             console.log(e)
@@ -39,8 +37,8 @@ router.post('/', sessionAuth, (req, res) => {
             req.session.save(() => {
                 req.session.team_id = teamData.id;
                 req.session.team_name = teamData.team_name;
-                const team = teamData.get({ plain: true });
-                res.render('team', { team, loggedIn: true });
+                res.json(teamData)
+
             });
         })
         .catch(err => {
@@ -49,26 +47,6 @@ router.post('/', sessionAuth, (req, res) => {
         });
 });
 
-// DELETE team
-router.delete('/:id', sessionAuth, (req, res) => {
-    Team.destroy({
-        where: {
-            id: req.params.id
-        }
-    })
-        .then(teamData => {
-            if (teamData) {
-                const team = teamData.get({ plain: true });
-                res.render('team', { team, loggedIn: true });
-            } else {
-                res.render('team', { team: false, loggedIn: true });
-            }
-        })
-        .catch(e => {
-            console.log(e)
-            res.status(400).json({ Error: e });
-        });
-});
-
 
 module.exports = router;
+  

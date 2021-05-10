@@ -7,29 +7,31 @@
                 <div class="card-body">
                     <h5 id="poke-name" class="card-title">{{name}}</h5>
                     <div class="progress">
-                        <div id="hp" class="progress-bar progress-bar-striped" role="progressbar" style="width: {{hp}}%"
+                          <!-- HP -->
+                        <div id="hp" class="progress-bar " role="progressbar" style="width: {{hp}}%"
                             aria-valuenow="{{hp}}" aria-valuemin="0" aria-valuemax="100">HP</div>
                     </div>
                     <div class="progress">
-                        <div id="attack" class="progress-bar progress-bar-striped bg-danger" role="progressbar"
+                          <!-- Attack -->
+                        <div id="attack" class="progress-bar  bg-danger" role="progressbar"
                             style="width: {{attack}}%" aria-valuenow="{{attack}}" aria-valuemin="0" aria-valuemax="100">
                             Attack</div>
                     </div>
-                    <div class="progress">
-                        <div id="defense" class="progress-bar progress-bar-striped bg-info" role="progressbar"
+                    <div class="progress"> 
+                         <!-- Defense -->
+                        <div id="defense" class="progress-bar bg-info" role="progressbar"
                             style="width: {{defense}}%" aria-valuenow="{{defense}}" aria-valuemin="0"
                             aria-valuemax="100">Defense</div>
                     </div>
                     <div class="progress">
-                        <div id="speed" class="progress-bar progress-bar-striped bg-warning" role="progressbar"
+                         <!-- Speed-->
+                        <div id="speed" class="progress-bar  bg-secondary" role="progressbar"
                             style="width: {{speed}}%" aria-valuenow="{{speed}}" aria-valuemin="0" aria-valuemax="100">
                             Speed</div>
                     </div>
-                    <div class="card-footer">
 
-                        <button id="{{id}} {{name}} {{imageSrc}} {{hp}} {{attack}} {{defense}} {{speed}}" type="submit" class="btn btn-dark">DRAFT ME</button>
+                        <button id="{{id}} {{name}} {{imageSrc}} {{hp}} {{attack}} {{defense}} {{speed}}" type="submit" class="btnDraft">Draft Me</button>
 
-                    </div>
                 </div>
             </div>
         </div>

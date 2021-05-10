@@ -70,7 +70,10 @@ router.post('/team', sessionAuth, (req, res) => {
   const { pokeTeam } = req.body
   // console.log (pokeTeam);
   Pokemon.bulkCreate(pokeTeam)
-    .then(pokemonData => res.status(200).json(pokemonData))
+    .then(pokemonData => {
+      console.log(pokemonData)
+      res.status(200).json(pokemonData)})
+    
     .catch(e => {
       console.log(e);
       res.status(400).json({ Error: e });

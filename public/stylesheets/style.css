@@ -1,6 +1,108 @@
 
+.draft-header {
+	background-image: url("https://res.cloudinary.com/actionfdfds/image/upload/v1620603338/intrologo_khbj0h.png") 50% no-repeat;
+	
+	height: 10vh;
+	max-width: 10vh;
+	position: absolute;
+  	left: 0px;
+  	top: 0px;
+}
+
+}
+
+#draft-clear, #draft-team{
+	font-family: 'Poppins', sans-serif;
+	font-weight: 500;
+	font-size: medium;
+	justify-self: auto;
+}
+
+.form-group {
+	font-size: medium;
+}
+
+#heroHeadline {
+	max-width: 10vh;
+}
+.navbar-brand{
+	font-family: 'Poppins', sans-serif;
+	font-size: x-large !important;
+	font-weight: 600;
+
+
+}
+
+body {
+	font-size: medium;
+}
+.signupbtn{
+	min-width: 50px !important;
+	font-size: large !important;
+}
+.card-title {
+	font-family: 'Poppins', sans-serif;
+	font-weight: 500;
+	font-size: medium;
+	align-self: center !important;
+}
+
+	.btnDraft {
+		color: #faf8f8;
+		align-self: center;
+		background-color: rgb(14,54,107);
+		border-color:rgb(31, 4, 130);
+		border-width: 1px;
+		font-family: 'Poppins', sans-serif;
+		font-size: 1rem;
+		padding-left: 25px !important;
+		padding-right: 25px!important;
+		min-height: 25px;
+		border-radius: 5px;
+	  }
+	  
+	  .btnDraft:hover,
+	  .btnDraft:active,
+	  .btnDraft:focus,
+	  .btnDraft.active {
+		background-color: 
+		rgb(14,54,107);		
+		color: #ffffff;
+		border-color:  rgb(14,54,107);
+		
+	  }
+
+
+
+
+.card-img-top {
+	width:50% !important;
+	align-self: center;
+	margin-top: 10px;
+}
+
+
+.nav-item{
+	font-family: 'Poppins', sans-serif;
+	font-size: large;
+	font-weight: 500;
+}
+
+
+.btn-outline-light
+{	font-family: 'Poppins', sans-serif;
+	font-size: large !important;
+	font-weight: 500;
+	margin-left: 10px;
+}
+
+logoIcon {
+	padding-left: 20px !important;
+	max-width: 50px !important;
+	max-height: 50px;
+}
 .bg-image{
-	background: url("https://i.imgur.com/sEJsZpb.png") 50% no-repeat;
+	background: url("https://res.cloudinary.com/actionfdfds/image/upload/v1620603068/background_gyqjms.png") 50% no-repeat;
 	background-size: cover;
 	height: 100vh;
 	text-align: center;
@@ -22,19 +124,22 @@
 .card {
     margin-bottom: 10px;
     margin-top: 10px;
+	padding-left: 10px;
+	align-items: center;
+	padding-right:  10px;
 	border-radius: 10px;
 	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
 }
 .progress-title{
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
     color: #333;
     text-transform: uppercase;
     margin: 0 0 25px;
 }
 .progress{
-    height: 10px;
+    height: 20px !important;
     background: #e9e9ea;
     border-radius: 15px;
     margin-bottom: 30px;
@@ -63,26 +168,6 @@
     top: -12px;
     right: 0;
     z-index: 2;
-}
-.progress.orange:before{ border: 7px solid #fe3b3b; }
-.progress.blue:before{ border: 7px solid #1a4966; }
-.progress.green:before{ border: 7px solid #53aa2c; }
-.progress.purple:before{ border: 7px solid #66406f; }
-.progress.orange .progress-value{
-    border: 5px solid #fe3b3b;
-    color: #fe3b3b;
-}
-.progress.blue .progress-value{
-    border: 5px solid #1a4966;
-    color: #1a4966;
-}
-.progress.green .progress-value{
-    border: 5px solid #53aa2c;
-    color: #53aa2c;
-}
-.progress.purple .progress-value{
-    border: 5px solid #66406f;
-    color: #66406f;
 }
 @-webkit-keyframes animate-positive{
     0%{ width: 0; }}

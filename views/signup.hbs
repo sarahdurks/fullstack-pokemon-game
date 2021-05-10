@@ -1,33 +1,37 @@
-<!-- Background image -->
-<div class="bg-image">
+{{> background}}
+
 
 <div class="container-fluid">
-    <form class="col-4 position-absolute top-50 start-50 translate-middle border border-dark p-10 m-10">
+  <div class="position-absolute top-0 start-50"> <img id="heroHeadline"   src="https://res.cloudinary.com/actionfdfds/image/upload/v1620603338/intrologo_khbj0h.png"></div> 
+    <form class="position-absolute top-50 start-50 translate-middle p-10 m-10">
+          <div><p> Welcome to the <strong>Pokémon Draft!</strong> Sign up and name your team to join in on the fun. </p></div>
 
         <!-- Username input -->
-        <div class="form-outline m-4">
+        <div class="form-group">
+             <label class="form-label" for="form1Example1">User Name</label>
             <input type="email" id="form1Example1" class="form-control username-signup" />
-            <label class="form-label" for="form1Example1">User Name</label>
         </div>
 
         <!-- Email input -->
-        <div class="form-outline m-4">
+        <div class="form-group">
+            <label class="form-label" for="form1Example2">Email Address</label>
             <input type="email" id="form1Example2" class="form-control email-signup" />
-            <label class="form-label" for="form1Example2">Email address</label>
         </div>
+    
 
         <!-- Password input -->
-        <div class="form-outline m-4">
+        <div class="form-group">
+            <label class="form-label" for="form1Example4">Password</label>
             <input type="password" id="form1Example3" class="form-control password-signup" />
-            <label class="form-label" for="form1Example3">Password</label>
+            
         </div>
+        
         <!-- Submit button -->
-        <div class="row m-4">
-            <button id="signupbtn" type="submit" class="btn btn-dark btn-block mt-4 p-2">Sign Up</button>
-        </div>
+        <div class="form-group">
+            <button id="signupbtn" type="submit" class="btn btn-dark btn-block">Sign Up</button>
+              </div>
     </form>
 </div>
 </div>
 <script src="/javascript/signup.js"></script>
-
-{{!-- To do 1. Add the background image to the handlebars to prevent loading delays--}}
+<!-- TO DO: Properly center logo-->

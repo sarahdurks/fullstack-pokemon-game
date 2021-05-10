@@ -1,39 +1,38 @@
-<!-- Background image -->
-<div class="bg-image">
+{{> background}}
 
 <div class="container-fluid">
-    <form 
-        class="col-4 position-absolute top-50 start-50 translate-middle border border-dark p-10 m-10">
-       <!-- Email input -->
-        <div class="form-outline m-4">
-            <input type="email" id="form1Example1" class="form-control email-login" />
+<!-- Draft Logo -->
+    <div class="position-absolute top-0 start-50"> <img id="heroHeadline"
+            src="https://res.cloudinary.com/actionfdfds/image/upload/v1620603338/intrologo_khbj0h.png"></div>
+
+    <form class="position-absolute top-50 start-50 translate-middle p-10 m-10">
+        <!-- Email input -->
+        <div class="form-group">
             <label class="form-label" for="form1Example1">Email address</label>
+            <input type="email" id="form1Example1" class="form-control email-login" />
         </div>
 
         <!-- Password input -->
-        <div class="form-outline m-4">
-            <input type="password" id="form1Example2" class="form-control password-login" />
+        <div class="form-group">
             <label class="form-label" for="form1Example2">Password</label>
+            <input type="password" id="form1Example2" class="form-control password-login" />
         </div>
 
         <!-- Sign up section -->
         <div class="row m-4">
-                <div class="col">
-                    <!-- Simple link -->
-                    <a class="text-dark" id="sign-up" href="/signup">Want to Sign up?</a>
-                </div>
+            <div class="col">
+                <!-- Signup link --><strong>
+                    <a class="text-dark" id="sign-up" href="/signup">Want to Sign up?</a></strong>
+            </div>
 
-            <!-- Submit button -->
-            <button id="loginbtn" type="submit" class="btn btn-dark btn-block mt-4 p-2">Log in</button>
+            <div class="form-group">
+                <!-- Submit button -->
+                <button id="loginbtn" type="submit" class="btn btn-dark btn-block mt-4 p-2">Log in</button>
+            </div>
         </div>
     </form>
 </div>
-
 </div>
-<!-- Background image -->
-
-
-
 <script src="/javascript/login.js"></script>
 
-{{!-- To do 1. Add the background image to the handlebars to prevent loading delays--}}
+<!-- TO DO: Properly center logo-->

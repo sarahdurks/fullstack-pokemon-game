@@ -27,14 +27,14 @@ Team.init(
                 isUrl: true
             }
         },
-        pokemon_count: {
-            type: DataTypes.INTEGER,
-            defaultValue: 0,
-            allowNull: true,
-            validate: {
-                max: 6 
-            }
-        },
+        // pokemon_count: {
+        //     type: DataTypes.INTEGER,
+        //     defaultValue: 0,
+        //     allowNull: true,
+        //     validate: {
+        //         max: 6 
+        //     }
+        // },
         user_id: {
             type: DataTypes.UUID,
             allowNull: false,
