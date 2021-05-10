@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const fetch = require('node-fetch');
 const sessionAuth = require('../../utils/auth');
+const PokemonPull = require('../../models/PokemonPull');
 
 // ISSUES 
 // Initial fetch logic
@@ -19,23 +20,23 @@ const promisifedPingApi = new Promise ((resolve, reject) => {
   }, 500);
 });
 
-Promise.race([
-    promisifedPingApi,
-    new Promise((_, reject) => {
-      setTimeout(() => reject('Timeout!'), 500);
-      (function () {
-        setInterval(function () {
-          getRandomWord();
-        }, 1000 * 60 * 60 * 24);
-      }) ();
-    })
-  ]).then(res => {
-      console.log('response: ', res);
-  })
-    .catch(e => {
-      console.error('error: ', e);
-      clearTimeout(id);
-    });
+// Promise.race([
+//     promisifedPingApi,
+//     new Promise((_, reject) => {
+//       setTimeout(() => reject('Timeout!'), 500);
+//       (function () {
+//         setInterval(function () {
+//           getRandomWord();
+//         }, 1000 * 60 * 60 * 24);
+//       }) ();
+//     })
+//   ]).then(res => {
+//       console.log('response: ', res);
+//   })
+//     .catch(e => {
+//       console.error('error: ', e);
+//       clearTimeout(id);
+//     });
 
 // End of Function to fetch pokemon every 24hrs
 
@@ -62,29 +63,58 @@ for (let i = 0; i < 20; i++) {
     }
 };
 let pokeData = [];
+
+const pokemonDB = PokemonPull.findAll
 // looping through our array, using numbers as pokemon to get pokemon data
 const getPokemon = () => {
 
+  const today = new Date().getDate();
+  console.log(today)
+
+  if (today !== pokeData[0].date || !pokeData[0].date) {
+
     for (let i = 0; i < pokeNums.length; i++) {
-        const pokeNum = pokeNums[i];
-        fetch(`https://pokeapi.co/api/v2/pokemon/${pokeNum}`)
-            .then(response => response.json())
-            .then(data => {
-                let eachPoke =
-                {
-                    name: (data.name).toUpperCase(),
-                    id: data.id,
-                    hp: data.stats[0].base_stat,
-                    attack: data.stats[1].base_stat,
-                    defense: data.stats[2].base_stat,
-                    speed: data.stats[5].base_stat,
-                    imageSrc: data.sprites.front_default
-                };
-                pokeData.push(eachPoke);
-            })
-    }
+      const pokeNum = pokeNums[i];
+      fetch(`https://pokeapi.co/api/v2/pokemon/${pokeNum}`)
+          .then(response => response.json())
+          .then(data => {
+              let eachPoke =
+              {
+                  name: (data.name).toUpperCase(),
+                  id: data.id,
+                  hp: data.stats[0].base_stat,
+                  attack: data.stats[1].base_stat,
+                  defense: data.stats[2].base_stat,
+                  speed: data.stats[5].base_stat,
+                  imageSrc: data.sprites.front_default,
+                  date: new Date().getDate()
+              };
+              pokeData.push(eachPoke);
+          }).then(() => {
+            if (pokeNums.length === pokeData.length) {
+              pokeData.forEach(pokemon => {
+                PokemonPull.create({ 
+                  name: pokemon.name,
+                  id: pokemon.id,
+                  hp: pokemon.hp,
+                  attack: pokemon.attack,
+                  defense: pokemon.defense,
+                  speed: pokemon.speed,
+                  imageSrc: pokemon.imageSrc,
+                  date: pokemon.date
+                })
+
+              })
+
+              // console.log("pokedata",pokeData);
+            }
+            
+          }) 
+  }
+
+  }
 };
-console.log(pokeData);
+
 
 
 // Function to render Draftpage

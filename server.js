@@ -28,7 +28,7 @@ app.use(routes);
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')))
 
 
 // sync sequelize models to the database, then turn on the server
