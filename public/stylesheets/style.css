@@ -99,6 +99,26 @@ logoIcon {
 	max-width: 50px !important;
 	max-height: 50px;
 }
+
+.slick-slide {
+	margin: 0px 20px;
+  }
+  
+  .logo-carousel {
+	overflow: inherit;
+	display: flex;
+	flex-direction: row;
+	border-top: 1px solid #e2dede;
+	border-bottom: 1px solid #e2dede;
+  }
+  .logo-carousel img {
+	  max-height: 60px;
+	  margin-left: 5px;
+	  margin-right: 5px;
+	  margin-top: 5px;
+	  margin-bottom: 5px;
+  }
+  }
 .bg-image{
 	background: 50% no-repeat; 
 	background-size: cover;
