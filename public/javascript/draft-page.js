@@ -86,6 +86,7 @@ setTimeout(() => {
 }, 500);
 
 const computerTurn = () => {
+    if (enemyTeam.length < 7) {
     let buttons = document.getElementsByTagName("button");
     let pokeChoiceButtons = [];
     for (let i = 0; i < buttons.length; i++) {
@@ -138,7 +139,8 @@ const computerTurn = () => {
         }
         alert(`Enemy drafted ${thisPokemon.pokemon_name}`)
         enemyTeam.push(thisPokemon);
-        console.log(thisPokemon);
+        console.log(enemyTeam);
+}
 };
 
 
@@ -149,7 +151,11 @@ const coinflip = () => {
         currentPlayer = "User";
     } else computerTurn();
 };
-coinflip();
+
+setTimeout(() => {
+    coinflip();
+}, 500);
+
 
 // computerTurn();
 
