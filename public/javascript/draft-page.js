@@ -105,8 +105,35 @@ const computerTurn = () => {
     }
     pokeChoiceButtons.shift();
     pokeChoiceButtons.shift();
-    console.log(pokeChoiceButtons);
-    let shuffledPokeChoice = [];
+    pokeChoiceButtons.shift();
+    let pokeInfoComputerChoice = [];
+    // console.log(pokeChoiceButtons);
+    for (let i = 0; i < pokeChoiceButtons.length; i++) {
+        const pokeData = pokeChoiceButtons[i].id.split(" ");
+        pokeInfoComputerChoice.push(pokeData);
+    }
+    // console.log(pokeInfoComputerChoice);
+    pokeInfoComputerChoice = pokeInfoComputerChoice.map(poke => {
+        return {
+            hp: parseInt(poke[3]),
+            attack: parseInt(poke[4]),
+            defense: parseInt(poke[5]),
+            speed: parseInt(poke[6])
+        }
+    })
+
+    let highValueArray =[];
+    for (let i = 0; i < pokeInfoComputerChoice.length; i++) {
+        const highValue = (pokeInfoComputerChoice[i].hp) + (pokeInfoComputerChoice[i].attack) + (pokeInfoComputerChoice[i].defense) + (pokeInfoComputerChoice[i].speed);
+        highValueArray.push(highValue);
+    }
+    let highButtonIndex = highValueArray.indexOf(Math.max(...highValueArray));
+    // console.log(highButtonIndex);
+    let compChoiceButtonId = (pokeChoiceButtons[highButtonIndex].id);
+    let thisButton = document.getElementById(`${compChoiceButtonId}`);
+        thisButton.disabled = true;
+        thisButton.innerText = "Already Drafted!"
+
 };
 
 computerTurn();
