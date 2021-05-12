@@ -44,6 +44,11 @@ PokemonPull.init(
             type: DataTypes.INTEGER,
             allowNull: false
         },
+        selected: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+            allowNull: false
+        }
     },
     {
         sequelize,

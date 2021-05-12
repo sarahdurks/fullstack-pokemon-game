@@ -31,9 +31,9 @@ In later-stage development efforts, this game will hav elogic closer to resembli
 * [Questions](#Questions)
 
 ### User-Story 📖
-> AS    
-> I WANT    
-> SO I CAN    
+> AS a Pokémon Fan
+> I WANT to make Data-based decisions and build a strong team   
+> SO I CAN win when I play in tournaments against My friends
 
 ### Acceptance-Criteria :white_check_mark:
 > ADD     
@@ -64,7 +64,8 @@ Sarah Durkin [GitHub](https://github.com/sarahdurks)
 No automated test are set up for this application yet.
 ![Frame 99](https://user-images.githubusercontent.com/77648727/117526120-cf5ed600-af77-11eb-9b39-3549d7b88208.png)
 ### Screenshot
-![code](./assets/)
+<img width="647" alt="Screen Shot 2021-05-10 at 2 59 29 PM" src="https://user-images.githubusercontent.com/77648727/117730184-d0bf1700-b1a0-11eb-9610-a0feacae04c1.png">
+
 
 ### Questions 🤔
 If you have any questions, please reach out to the Author's email.
@@ -72,7 +73,7 @@ If you have any questions, please reach out to the Author's email.
 Janarthani - Email: <janarthani.vs@gmail.com>
 Yevgeniya Terlyuk
 Megan Close
-Sarah Durkin
+Sarah Durkin - Github: [@sarahdurks](https://www.github.com/sarahdurks/)
 
 ### Resources & References 🙏
 

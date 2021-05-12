@@ -1,0 +1,21 @@
+<!-- Create new team section -->
+>
+<div class="container-fluid">
+    <div class="row d-flex justify-content-center">
+        <div class="col-12 col-lg-6">
+            <h1 class="banner_taital">Welcome to Pokémon Draft</h1>
+
+            <!-- Pick a Team Name Generator-->
+            {{> team-name}}
+            <!-- Pick a Logo-->
+            <p class="browse_text">Pick your team logo (Optional).</p>
+            <div class="banner_bt">
+                {{> logo}}
+            </div>
+
+            <div class="banner_bt">
+                <button id="create-team" class="btn btn-dark ms-4 p-4">Create Team</button>
+            </div>
+        </div>
+    </div>
+</div>

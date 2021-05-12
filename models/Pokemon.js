@@ -45,9 +45,13 @@ Pokemon.init(
             references: {
                 model: 'team',
                 key: 'id',
-                deferrable: Deferrable.INITIALLY_IMMEDIATE
-                
+                deferrable: Deferrable.INITIALLY_IMMEDIATE   
             }
+        },
+        selected: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+            allowNull: false
         }
     },
     {

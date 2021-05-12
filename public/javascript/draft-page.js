@@ -1,48 +1,31 @@
-
-// DOM Selection
+// DOM Selection and global variable assignment
 let PokemonBtnEl = document.querySelector("#listen");
-const pokeTeam = [];
+const draftTeamBtnEl = document.querySelector('#draft-team');
+const clearDraftBtnEl = document.querySelector('#draft-clear');
+let pokeTeam = [];
+let count;
 let dbTeam = [];
 let num;
 let team_id;
 let pokemons;
-const draftTeamBtnEl = document.querySelector('#draft-team');
 
-// console.log (pokeTeam);
 
-//ISSUES
-
-//Team ID hardcoded
-// https://github.com/sarahdurks/fullstack-pokemon-game/issues/12
-// const getTeamData = function() {
+// Function to fetch team id and pokemon count
 fetch("/api/team")
     .then(response => response.json())
     .then(data => {
         team_id = data.id;
-        // let pokemons = data.pokemons;
         let count = 6 - (data.pokemons.length);
-        console.log(count);
+        // console.log(count);
         dbTeam.push(team_id);
         dbTeam.push(count);
-
-        // console.log(team_id);
-        // console.log(pokemons);
-        
+    })
+    .catch(e => {
+        console.log(e);
+        alert(response.statusText);
     });
-    console.log(dbTeam);
-// .then(data => console.log(data))
-// let team_id = data.id;
-// let pokemons = data.pokemons;
-// console.log(team_id);
-// console.log(pokemons);
-// };
 
-// getTeamData();
-// console.log(team_id);
-//Pokemon count should be incremental, ties to here and the team model
-//https://github.com/sarahdurks/fullstack-pokemon-game/issues/10
-
-// Listening for button click to draft each pokemon
+// Event listener for button click to draft each pokemon
 PokemonBtnEl.addEventListener("click", (event) => {
     let buttonId = event.target.id;
     if (pokeTeam.length < dbTeam[1] && !pokeTeam.includes(buttonId) && buttonId != "") {
@@ -58,17 +41,24 @@ PokemonBtnEl.addEventListener("click", (event) => {
             attack: pokeInfo[4],
             defense: pokeInfo[5],
             speed: pokeInfo[6],
-            team_id: dbTeam[0]
-            // find a way to include team id in the array to bulk create
+            team_id: dbTeam[0],
+            selected: true
         }
         pokeTeam.push(thisPokemon);
-        console.log(pokeTeam);
+        // console.log(pokeTeam);
+    } else {
+        alert('No more slot on your team. Click "Draft Team" button to finish drafting.');
+        return;
     }
-
 });
 
+// Event listener for draft team button - to bulk create pokemons
 draftTeamBtnEl.addEventListener('click', event => {
     event.preventDefault();
+    if (pokeTeam.length <= 0) {
+        alert(`Please draft a pokemon to add it to the team`);
+        return;
+    }
     const response = fetch(`/api/pokemons/team`, {
         method: 'POST',
         body: JSON.stringify({
@@ -79,27 +69,43 @@ draftTeamBtnEl.addEventListener('click', event => {
         }
     })
         .then(response => {
-            // return response.json();
             if (response.ok) {
                 alert(`Pokemon Draft Completed!`);
                 document.location.replace('/team');
             }
         })
-        // .then (response => {
-        // console.log(response);
-        // })
         .catch(e => {
             console.log(e);
             alert(response.statusText);
         });
-
 });
 
 
+// Event listener for Clear draft button// refresh page
+clearDraftBtnEl.addEventListener('click', event => {
+    location.reload();
+});
+
+
+
 // to do
-// 1. Event listener for clear draft button
-// 2. A way to get team_id and pokemon_count on line 25 and line 12 instead of hardcoding
-// 3. Change the pokemon_count as a function to count the pokemon in the team
+
+//* teampage.js (also .hbs)
+//1. create a form for team creating **team name/team-logo (.hbs) Sarah
+//2. button click listener for create team (do a post request for .html route team (/team)) Sarah
+// 3. Drop down for team name generator.
+
+//* draftpage-route
+
+//1. time issue-every 24 hours. *Yev
+
+//* change header/nav bar so that options available are only there based on status of user 
+
+//* finally, present! 
+
+
+
+
 
 
 

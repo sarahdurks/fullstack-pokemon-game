@@ -1,0 +1,13 @@
+
+<div class="input-group mb-3">
+  <select class="custom-select" id="team-name">
+    <option selected>Pick a team name..</option>
+    <option value="1"></option>
+    {{#each teamNamesArr as |team_name|}}
+    <option value="{{team_name}}">{{team_name}}</option>
+    {{/each}}
+  </select>
+  <div class="input-group-append">
+    <label class="input-group-text" for="team-name">Select</label>
+  </div>
+</div>

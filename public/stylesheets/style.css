@@ -9,8 +9,6 @@
   	top: 0px;
 }
 
-}
-
 #draft-clear, #draft-team{
 	font-family: 'Poppins', sans-serif;
 	font-weight: 500;
@@ -102,7 +100,7 @@ logoIcon {
 	max-height: 50px;
 }
 .bg-image{
-	background: url("https://res.cloudinary.com/actionfdfds/image/upload/v1620603068/background_gyqjms.png") 50% no-repeat;
+	background: 50% no-repeat; 
 	background-size: cover;
 	height: 100vh;
 	text-align: center;

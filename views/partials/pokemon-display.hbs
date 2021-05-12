@@ -3,9 +3,9 @@
         {{#each pokeData}}
         <div class="col col-md-3" style="max-width:18rem">
             <div class="card">
-                <img id="poke-img" class="card-img-top" src="{{imageSrc}}" alt="pokemon image">
+                <img id="poke-img" class="card-img-top" src="{{pokemon_pic}}" alt="pokemon image">
                 <div class="card-body">
-                    <h5 id="poke-name" class="card-title">{{name}}</h5>
+                    <h5 id="poke-name" class="card-title">{{pokemon_name}}</h5>
                     <div class="progress">
                           <!-- HP -->
                         <div id="hp" class="progress-bar " role="progressbar" style="width: {{hp}}%"
@@ -29,9 +29,11 @@
                             style="width: {{speed}}%" aria-valuenow="{{speed}}" aria-valuemin="0" aria-valuemax="100">
                             Speed</div>
                     </div>
-
-                        <button id="{{id}} {{name}} {{imageSrc}} {{hp}} {{attack}} {{defense}} {{speed}}" type="submit" class="btnDraft">Draft Me</button>
-
+                        {{#if selected}}
+                        <button id="{{pokedex}} {{pokemon_name}} {{pokemon_pic}} {{hp}} {{attack}} {{defense}} {{speed}}" type="submit" data-selected="{{selected}}" name="draftmeBtn" class="btnDraft"disabled>Already Drafted!</button>
+                        {{else}}
+                        <button id="{{pokedex}} {{pokemon_name}} {{pokemon_pic}} {{hp}} {{attack}} {{defense}} {{speed}}" type="submit" data-selected="{{selected}}" name="draftmeBtn" class="btnDraft">DRAFT ME</button>
+                        {{/if}}
                 </div>
             </div>
         </div>
