@@ -2,6 +2,7 @@ const router = require('express').Router();
 const fetch = require('node-fetch');
 const sessionAuth = require('../../utils/auth');
 const PokemonPull = require('../../models/PokemonPull');
+const { Sequelize , Op } = require('sequelize');
 
 // ISSUES 
 // Initial fetch logic
@@ -13,6 +14,10 @@ const PokemonPull = require('../../models/PokemonPull');
 
 // Function to fetch pokemon every 24hrs
 let id;
+let pokemonTable; 
+PokemonPull.findOne({where : {hp: {[Op.gt]:1}}}).then(res => {
+  pokemonTable = res.dataValues.date
+})
 
 const promisifedPingApi = new Promise ((resolve, reject) => {
   id = setTimeout(() => {
@@ -67,11 +72,13 @@ let pokeData = [];
 const pokemonDB = PokemonPull.findAll
 // looping through our array, using numbers as pokemon to get pokemon data
 const getPokemon = () => {
-
+console.log(pokemonTable)
   const today = new Date().getDate();
-  console.log(today)
+  // console.log(today)
 
-  if (today !== pokeData[0].date || !pokeData[0].date) {
+  if (today !== pokemonTable|| !pokemonTable) {
+
+    PokemonPull.drop()
 
     for (let i = 0; i < pokeNums.length; i++) {
       const pokeNum = pokeNums[i];
@@ -128,6 +135,9 @@ router.get('/', sessionAuth, (req, res) => {
 
 
 module.exports = router;
+
+
+
 
 
 // to do
