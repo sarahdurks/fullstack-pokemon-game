@@ -9,17 +9,7 @@ let num;
 let team_id;
 let pokemons;
 let currentPlayer = "";
-
-
-const coinflip = () => {
-    User = (Math.floor(Math.random() * 2) == 0);
-    if (User) {
-        currentPlayer = "User";
-    } else currentPlayer = "Computer";
-};
-coinflip();
-console.log(currentPlayer);
-
+let enemyTeam = [];
 
 // Function to fetch team id and pokemon count
 fetch("/api/team")
@@ -38,7 +28,7 @@ fetch("/api/team")
 
 
 // Event listener for button click to draft each pokemon
-PokemonBtnEl.addEventListener("click", (event) => {
+const userTurn = PokemonBtnEl.addEventListener("click", (event) => {
     let buttonId = event.target.id;
     if (pokeTeam.length < dbTeam[1] && !pokeTeam.includes(buttonId) && buttonId != "") {
         let thisButton = document.getElementById(`${buttonId}`);
@@ -56,7 +46,7 @@ PokemonBtnEl.addEventListener("click", (event) => {
             team_id: dbTeam[0],
             selected: true,
         }
-        console.log(thisPokemon)
+        // console.log(thisPokemon)
         pokeTeam.push(thisPokemon);
         // console.log(pokeTeam);
         fetch(`/api/pokemons/`, {
@@ -81,6 +71,7 @@ PokemonBtnEl.addEventListener("click", (event) => {
         alert('There are no slots left on your team. Click "Draft Team" button to finish drafting.');
         return;
     }
+    computerTurn();
 });
 
 
@@ -132,11 +123,35 @@ const computerTurn = () => {
     let compChoiceButtonId = (pokeChoiceButtons[highButtonIndex].id);
     let thisButton = document.getElementById(`${compChoiceButtonId}`);
         thisButton.disabled = true;
-        thisButton.innerText = "Already Drafted!"
-
+        thisButton.innerText = "Enemy Team!"
+        pokeInfo = compChoiceButtonId.split(" ");
+        let thisPokemon = {
+            pokedex: pokeInfo[0],
+            pokemon_name: pokeInfo[1],
+            pokemon_pic: pokeInfo[2],
+            hp: pokeInfo[3],
+            attack: pokeInfo[4],
+            defense: pokeInfo[5],
+            speed: pokeInfo[6],
+            team_id: dbTeam[0],
+            selected: true,
+        }
+        alert(`Enemy drafted ${thisPokemon.pokemon_name}`)
+        enemyTeam.push(thisPokemon);
+        console.log(thisPokemon);
 };
 
-computerTurn();
+
+
+const coinflip = () => {
+    User = (Math.floor(Math.random() * 2) == 0);
+    if (User) {
+        currentPlayer = "User";
+    } else computerTurn();
+};
+coinflip();
+
+// computerTurn();
 
 
 // let gameCount = dbTeam[1];
