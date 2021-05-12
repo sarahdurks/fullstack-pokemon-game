@@ -8,6 +8,17 @@ let dbTeam = [];
 let num;
 let team_id;
 let pokemons;
+let currentPlayer = "";
+
+
+const coinflip = () => {
+    User = (Math.floor(Math.random() * 2) == 0);
+    if (User) {
+        currentPlayer = "User";
+    } else currentPlayer = "Computer";
+};
+coinflip();
+console.log(currentPlayer);
 
 
 // Function to fetch team id and pokemon count
@@ -16,7 +27,7 @@ fetch("/api/team")
     .then(data => {
         team_id = data.id;
         let count = 6 - (data.pokemons.length);
-        // console.log(count);
+        console.log(count);
         dbTeam.push(team_id);
         dbTeam.push(count);
     })
@@ -24,6 +35,7 @@ fetch("/api/team")
         console.log(e);
         alert(response.statusText);
     });
+
 
 // Event listener for button click to draft each pokemon
 PokemonBtnEl.addEventListener("click", (event) => {
@@ -42,51 +54,66 @@ PokemonBtnEl.addEventListener("click", (event) => {
             defense: pokeInfo[5],
             speed: pokeInfo[6],
             team_id: dbTeam[0],
-            selected: true
+            selected: true,
         }
+        console.log(thisPokemon)
         pokeTeam.push(thisPokemon);
         // console.log(pokeTeam);
-    } else {
-        alert('No more slot on your team. Click "Draft Team" button to finish drafting.');
-        return;
-    }
-});
-
-// Event listener for draft team button - to bulk create pokemons
-draftTeamBtnEl.addEventListener('click', event => {
-    event.preventDefault();
-    if (pokeTeam.length <= 0) {
-        alert(`Please draft a pokemon to add it to the team`);
-        return;
-    }
-    const response = fetch(`/api/pokemons/team`, {
-        method: 'POST',
-        body: JSON.stringify({
-            pokeTeam
-        }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-        .then(response => {
-            if (response.ok) {
-                alert(`Pokemon Draft Completed!`);
-                document.location.replace('/team');
+        fetch(`/api/pokemons/`, {
+            method: 'POST',
+            body: JSON.stringify(
+                thisPokemon
+            ),
+            headers: {
+                'Content-Type': 'application/json'
             }
         })
-        .catch(e => {
-            console.log(e);
-            alert(response.statusText);
-        });
+            .then(response => {
+                if (response.ok) {
+                    // alert(`Pokemon added to your Team!`);
+
+                }
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    } else {
+        alert('There are no slots left on your team. Click "Draft Team" button to finish drafting.');
+        return;
+    }
 });
 
 
-// Event listener for Clear draft button// refresh page
-clearDraftBtnEl.addEventListener('click', event => {
-    location.reload();
+draftTeamBtnEl.addEventListener('click', event => {
+    event.preventDefault();
+    document.location.replace('/team');
 });
 
 
+setTimeout(() => {
+    console.log(dbTeam[1])
+}, 500);
+
+const computerTurn = () => {
+    let buttons = document.getElementsByTagName("button");
+    let pokeChoiceButtons = [];
+    for (let i = 0; i < buttons.length; i++) {
+        const singleButton = buttons[i];
+        if (!singleButton.disabled) {
+            pokeChoiceButtons.push(singleButton);
+        }
+    }
+    pokeChoiceButtons.shift();
+    pokeChoiceButtons.shift();
+    console.log(pokeChoiceButtons);
+    let shuffledPokeChoice = [];
+};
+
+computerTurn();
+
+
+// let gameCount = dbTeam[1];
+// console.log(gameCount);
 
 // to do
 

@@ -49,7 +49,7 @@ setTimeout(() => {
             console.log(e);
 
         });
-}, 500);
+}, 1000);
 
 // setting empty array to hold random pokemon ids to pull from api
 let pokeNums = [];
@@ -112,6 +112,18 @@ router.post("/updatePokeData", (req, res) => {
             if (pokeInData == newPoke) {
                 pokeData[i].selected = true;
             }
+        }
+    }
+});
+
+router.post("/updatePokeOne", (req, res) => {
+    console.log("this is req.body.pokedex");
+    console.log(req.body.pokedex);
+    let updatedPokemon = req.body.pokedex;
+    for (let i = 0; i < pokeData.length; i++) {
+        const pokeInData = pokeData[i].pokedex;
+        if (pokeInData == updatedPokemon) {
+            pokeData[i].selected = true;
         }
     }
 });

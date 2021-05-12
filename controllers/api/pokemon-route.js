@@ -69,7 +69,7 @@ router.get('/pokedex', (req, res) => {
 
 // POST /api/pokemons/
 router.post('/', sessionAuth, (req, res) => {
-
+  // console.log(req)
   Pokemon.create({
     pokedex: req.body.pokedex,
     pokemon_name: req.body.pokemon_name,
@@ -78,9 +78,20 @@ router.post('/', sessionAuth, (req, res) => {
     attack: req.body.attack,
     defense: req.body.defense,
     speed: req.body.speed,
-    user_id: req.session.user_id
+    user_id: req.session.user_id,
+    team_id: req.body.team_id
   })
     .then(pokemonData => res.status(200).json(pokemonData))
+    fetch(`${server}/draftpage/updatePokeOne`, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: "POST",
+      body: JSON.stringify(
+          req.body
+       )
+    })
     .catch(e => {
       console.log(e);
       res.status(400).json({ Error: e });
