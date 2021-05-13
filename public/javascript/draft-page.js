@@ -10,7 +10,7 @@ let team_id;
 let pokemons;
 let currentPlayer = "";
 let enemyTeam = [];
-let isGameOver = true;
+let isGameOver = false;
 
 // Function to fetch team id and pokemon count
 fetch("/api/team")
@@ -32,61 +32,12 @@ const coinflip = () => {
     if (User) {
         currentPlayer = "User";
     } else {
-        currentPlayer = "Enemy";
-        computerTurn();    
+        currentPlayer = "Enemy";    
     }
 
 };
 
 // Event listener for button click to draft each pokemon
-// if (currentPlayer = "User") {
-    PokemonBtnEl.addEventListener("click", (event) => {
-        let buttonId = event.target.id;
-        if (pokeTeam.length < dbTeam[1] && !pokeTeam.includes(buttonId) && buttonId != "") {
-            let thisButton = document.getElementById(`${buttonId}`);
-            thisButton.disabled = true;
-            thisButton.innerText = "Already Drafted!"
-            pokeInfo = buttonId.split(" ");
-            let thisPokemon = {
-                pokedex: pokeInfo[0],
-                pokemon_name: pokeInfo[1],
-                pokemon_pic: pokeInfo[2],
-                hp: pokeInfo[3],
-                attack: pokeInfo[4],
-                defense: pokeInfo[5],
-                speed: pokeInfo[6],
-                team_id: dbTeam[0],
-                selected: true,
-            }
-            // console.log(thisPokemon)
-            pokeTeam.push(thisPokemon);
-            // console.log(pokeTeam);
-            fetch(`/api/pokemons/`, {
-                method: 'POST',
-                body: JSON.stringify(
-                    thisPokemon
-                ),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then(response => {
-                    if (response.ok) {
-                        // alert(`Pokemon added to your Team!`);
-
-                    }
-                })
-                .catch(e => {
-                    console.log(e);
-                });
-        } else {
-            alert('There are no slots left on your team. Click "Draft Team" button to finish drafting.');
-            // return;
-        }
-        // currentPlayer = "Enemy";
-        // computerTurn();
-    });
-// };
 
 
 draftTeamBtnEl.addEventListener('click', event => {
@@ -158,16 +109,64 @@ const computerTurn = () => {
 };
 
 // game logic
-function playGame() {
-    if (isGameOver) return;
-    if (currentPlayer === "User") {
-        
-    }
-}
-
 setTimeout(() => {
     coinflip();
 }, 500);
+
+
+function playGame() {
+    if (isGameOver) return;
+    if (currentPlayer === "User") {
+        PokemonBtnEl.addEventListener("click", (event) => {
+            let buttonId = event.target.id;
+            if (pokeTeam.length < dbTeam[1] && !pokeTeam.includes(buttonId) && buttonId != "") {
+                let thisButton = document.getElementById(`${buttonId}`);
+                thisButton.disabled = true;
+                thisButton.innerText = "Already Drafted!"
+                pokeInfo = buttonId.split(" ");
+                let thisPokemon = {
+                    pokedex: pokeInfo[0],
+                    pokemon_name: pokeInfo[1],
+                    pokemon_pic: pokeInfo[2],
+                    hp: pokeInfo[3],
+                    attack: pokeInfo[4],
+                    defense: pokeInfo[5],
+                    speed: pokeInfo[6],
+                    team_id: dbTeam[0],
+                    selected: true,
+                }
+                // console.log(thisPokemon)
+                pokeTeam.push(thisPokemon);
+                // console.log(pokeTeam);
+                fetch(`/api/pokemons/`, {
+                    method: 'POST',
+                    body: JSON.stringify(
+                        thisPokemon
+                    ),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            // alert(`Pokemon added to your Team!`);
+    
+                        }
+                    })
+                    .catch(e => {
+                        console.log(e);
+                    });
+            } else {
+                alert('There are no slots left on your team. Click "Draft Team" button to finish drafting.');
+                // return;
+            }
+        });
+    }
+    if (currentPlayer === "Enemey") {
+        computerTurn();
+    };
+}
+
 
 
 // computerTurn();
