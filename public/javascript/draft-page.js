@@ -17,7 +17,7 @@ fetch("/api/team")
     .then(response => response.json())
     .then(data => {
         team_id = data.id;
-        let count = 6 - (data.pokemons.length);
+        count = 6 - (data.pokemons.length);
         console.log(count);
         dbTeam.push(team_id);
         dbTeam.push(count);
@@ -27,18 +27,6 @@ fetch("/api/team")
         alert(response.statusText);
     });
 
-const coinflip = () => {
-    User = (Math.floor(Math.random() * 2) == 0);
-    if (User) {
-        currentPlayer = "User";
-    } else {
-        currentPlayer = "Enemy";    
-    }
-
-};
-
-// Event listener for button click to draft each pokemon
-
 
 draftTeamBtnEl.addEventListener('click', event => {
     event.preventDefault();
@@ -46,9 +34,26 @@ draftTeamBtnEl.addEventListener('click', event => {
 });
 
 
+// game logic
+const coinflip = () => {
+    User = (Math.floor(Math.random() * 2) == 0);
+    if (User) {
+        currentPlayer = "User";
+    } else {
+        currentPlayer = "Enemy";
+    }
+
+};
+
 setTimeout(() => {
-    console.log(dbTeam[1])
+    coinflip();
 }, 500);
+
+
+setTimeout(() => {
+    console.log(count);
+}, 500);
+
 
 const computerTurn = () => {
     if (enemyTeam.length < 7) {
@@ -108,11 +113,12 @@ const computerTurn = () => {
     }
 };
 
-// game logic
-setTimeout(() => {
-    coinflip();
-}, 500);
-
+const checkUserTeamNumber = () => {
+    if (count === 0) {
+        currentPlayer = "Enemy";
+    }
+    else currentPlayer = "User";
+}
 
 function playGame() {
     if (isGameOver) return;
@@ -150,7 +156,7 @@ function playGame() {
                     .then(response => {
                         if (response.ok) {
                             // alert(`Pokemon added to your Team!`);
-    
+
                         }
                     })
                     .catch(e => {
@@ -167,7 +173,11 @@ function playGame() {
     };
 }
 
-
+function checkGameStatus() {
+    if (enemyTeam.length === 6 && count === 6) {
+        isGameOver = true;
+    }
+};
 
 // computerTurn();
 
