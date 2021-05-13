@@ -47,16 +47,16 @@ const coinflip = () => {
 
 setTimeout(() => {
     coinflip();
+    playGame();
 }, 500);
-
 
 setTimeout(() => {
     console.log(count);
 }, 500);
 
-
+// logic behind computer choice (making sure computer picks best available pokemon)
 const computerTurn = () => {
-    if (enemyTeam.length < 7) {
+    if (enemyTeam.length < 6) {
         let buttons = document.getElementsByTagName("button");
         let pokeChoiceButtons = [];
         for (let i = 0; i < buttons.length; i++) {
@@ -110,74 +110,106 @@ const computerTurn = () => {
         alert(`Enemy drafted ${thisPokemon.pokemon_name}`)
         enemyTeam.push(thisPokemon);
         console.log(enemyTeam);
+
+        checkBeforeUserTurn();
+        console.log(currentPlayer);
+        playGame();
     }
 };
 
-const checkUserTeamNumber = () => {
-    if (count === 0) {
-        currentPlayer = "Enemy";
-    }
-    else currentPlayer = "User";
-}
+const userTurn = () => {
+    PokemonBtnEl.addEventListener("click", (event) => {
 
-function playGame() {
-    if (isGameOver) return;
-    if (currentPlayer === "User") {
-        PokemonBtnEl.addEventListener("click", (event) => {
-            let buttonId = event.target.id;
-            if (pokeTeam.length < dbTeam[1] && !pokeTeam.includes(buttonId) && buttonId != "") {
-                let thisButton = document.getElementById(`${buttonId}`);
-                thisButton.disabled = true;
-                thisButton.innerText = "Already Drafted!"
-                pokeInfo = buttonId.split(" ");
-                let thisPokemon = {
-                    pokedex: pokeInfo[0],
-                    pokemon_name: pokeInfo[1],
-                    pokemon_pic: pokeInfo[2],
-                    hp: pokeInfo[3],
-                    attack: pokeInfo[4],
-                    defense: pokeInfo[5],
-                    speed: pokeInfo[6],
-                    team_id: dbTeam[0],
-                    selected: true,
+        let buttonId = event.target.id;
+        if (pokeTeam.length < dbTeam[1] && !pokeTeam.includes(buttonId) && buttonId != "") {
+            let thisButton = document.getElementById(`${buttonId}`);
+            thisButton.disabled = true;
+            thisButton.innerText = "Already Drafted!"
+            pokeInfo = buttonId.split(" ");
+            let thisPokemon = {
+                pokedex: pokeInfo[0],
+                pokemon_name: pokeInfo[1],
+                pokemon_pic: pokeInfo[2],
+                hp: pokeInfo[3],
+                attack: pokeInfo[4],
+                defense: pokeInfo[5],
+                speed: pokeInfo[6],
+                team_id: dbTeam[0],
+                selected: true,
+            }
+            // console.log(thisPokemon)
+            pokeTeam.push(thisPokemon);
+            // console.log(pokeTeam);
+            fetch(`/api/pokemons/`, {
+                method: 'POST',
+                body: JSON.stringify(
+                    thisPokemon
+                ),
+                headers: {
+                    'Content-Type': 'application/json'
                 }
-                // console.log(thisPokemon)
-                pokeTeam.push(thisPokemon);
-                // console.log(pokeTeam);
-                fetch(`/api/pokemons/`, {
-                    method: 'POST',
-                    body: JSON.stringify(
-                        thisPokemon
-                    ),
-                    headers: {
-                        'Content-Type': 'application/json'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        // alert(`Pokemon added to your Team!`);
+
                     }
                 })
-                    .then(response => {
-                        if (response.ok) {
-                            // alert(`Pokemon added to your Team!`);
+                .catch(e => {
+                    console.log(e);
+                });
+        } else {
+            alert('There are no slots left on your team.');
+            // return;
+        }
+        checkBeforeEnemyTurn();
+        console.log(currentPlayer);
+        playGame();
+    })
 
-                        }
-                    })
-                    .catch(e => {
-                        console.log(e);
-                    });
-            } else {
-                alert('There are no slots left on your team. Click "Draft Team" button to finish drafting.');
-                // return;
-            }
-        });
+};
+
+const checkBeforeUserTurn = () => {
+    if (count === 0) {
+        currentPlayer = "Enemy";
+        // playGame();
     }
-    if (currentPlayer === "Enemey") {
-        computerTurn();
-    };
-}
+    else currentPlayer = "User";
+    console.log(currentPlayer)
+};
+
+const  checkBeforeEnemyTurn = () => {
+    if (enemyTeam.length === 6) {
+        currentPlayer = "User";
+        // playGame();
+    }
+    else currentPlayer = "Enemy"
+    // playGame();
+};
 
 function checkGameStatus() {
-    if (enemyTeam.length === 6 && count === 6) {
+    if (enemyTeam.length === 6 && pokeTeam.length === count) {
         isGameOver = true;
     }
 };
+
+function playGame() {
+    console.log("playgame function called");
+    checkGameStatus();
+    if (isGameOver) return;
+    if (currentPlayer === "User") {
+        userTurn();
+
+    }
+    if (currentPlayer === "Enemy") {
+        setTimeout(() => {
+            computerTurn();
+        }, 1000);
+
+    };
+}
+
+
 
 // computerTurn();
 
