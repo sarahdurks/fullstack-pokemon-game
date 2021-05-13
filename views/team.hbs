@@ -14,13 +14,13 @@
                 <h1 class="banner_taital fs-2">Welcome back to Pokémon Draft {{team.team_name}}</h1>
                 <img id="team-logo" class="card-img-top" src="{{team.team_logo}}" alt="team-logo">
                 {{!-- <h4 class="banner_taital">Your secret key for drafting is {{team.id}}</h4> --}}
-                <p class="browse_text">You have {{team.pokemons.length}} Pokémon in your team. {{#if disable}} Your team is full, If you wish to battle click on Go to Battle button.
-                    If you wish to draft, please remove any pokemon of your choice. 
+                <p class="browse_text">You have {{team.pokemons.length}} Pokémon in your team. {{#if disable}} Your team is full,
+                    If you wish to draft different Pokémon, please drop Pokémon from your Team. 
                     {{else}} To draft more Pokémon please visit the draft-page. If you wish to battle click on Go to Battle button.{{/if}}</p>
                 <div class="col-10 d-flex justify-content-evenly">
                     {{#unless disable}}
                     <button class="btn btn-dark mb-4"><a class="style-none text-white fs-lg-4" href="/draftpage">Draft Team</a></button> {{/unless}}
-                     <button class="btn btn-dark mb-4"><a class="style-none text-white fs-lg-4" href="/battle">Go to Battle</a></button>
+                     {{!-- <button class="btn btn-dark mb-4"><a class="style-none text-white fs-lg-4" href="/battle">Go to Battle</a></button> --}}
                 </div>
             </div>
         </div>
