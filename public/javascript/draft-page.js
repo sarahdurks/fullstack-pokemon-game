@@ -10,6 +10,7 @@ let team_id;
 let pokemons;
 let currentPlayer = "";
 let enemyTeam = [];
+let isGameOver = true;
 
 // Function to fetch team id and pokemon count
 fetch("/api/team")
@@ -26,53 +27,66 @@ fetch("/api/team")
         alert(response.statusText);
     });
 
+const coinflip = () => {
+    User = (Math.floor(Math.random() * 2) == 0);
+    if (User) {
+        currentPlayer = "User";
+    } else {
+        currentPlayer = "Enemy";
+        computerTurn();    
+    }
+
+};
 
 // Event listener for button click to draft each pokemon
-const userTurn = PokemonBtnEl.addEventListener("click", (event) => {
-    let buttonId = event.target.id;
-    if (pokeTeam.length < dbTeam[1] && !pokeTeam.includes(buttonId) && buttonId != "") {
-        let thisButton = document.getElementById(`${buttonId}`);
-        thisButton.disabled = true;
-        thisButton.innerText = "Already Drafted!"
-        pokeInfo = buttonId.split(" ");
-        let thisPokemon = {
-            pokedex: pokeInfo[0],
-            pokemon_name: pokeInfo[1],
-            pokemon_pic: pokeInfo[2],
-            hp: pokeInfo[3],
-            attack: pokeInfo[4],
-            defense: pokeInfo[5],
-            speed: pokeInfo[6],
-            team_id: dbTeam[0],
-            selected: true,
-        }
-        // console.log(thisPokemon)
-        pokeTeam.push(thisPokemon);
-        // console.log(pokeTeam);
-        fetch(`/api/pokemons/`, {
-            method: 'POST',
-            body: JSON.stringify(
-                thisPokemon
-            ),
-            headers: {
-                'Content-Type': 'application/json'
+// if (currentPlayer = "User") {
+    PokemonBtnEl.addEventListener("click", (event) => {
+        let buttonId = event.target.id;
+        if (pokeTeam.length < dbTeam[1] && !pokeTeam.includes(buttonId) && buttonId != "") {
+            let thisButton = document.getElementById(`${buttonId}`);
+            thisButton.disabled = true;
+            thisButton.innerText = "Already Drafted!"
+            pokeInfo = buttonId.split(" ");
+            let thisPokemon = {
+                pokedex: pokeInfo[0],
+                pokemon_name: pokeInfo[1],
+                pokemon_pic: pokeInfo[2],
+                hp: pokeInfo[3],
+                attack: pokeInfo[4],
+                defense: pokeInfo[5],
+                speed: pokeInfo[6],
+                team_id: dbTeam[0],
+                selected: true,
             }
-        })
-            .then(response => {
-                if (response.ok) {
-                    // alert(`Pokemon added to your Team!`);
-
+            // console.log(thisPokemon)
+            pokeTeam.push(thisPokemon);
+            // console.log(pokeTeam);
+            fetch(`/api/pokemons/`, {
+                method: 'POST',
+                body: JSON.stringify(
+                    thisPokemon
+                ),
+                headers: {
+                    'Content-Type': 'application/json'
                 }
             })
-            .catch(e => {
-                console.log(e);
-            });
-    } else {
-        alert('There are no slots left on your team. Click "Draft Team" button to finish drafting.');
-        return;
-    }
-    computerTurn();
-});
+                .then(response => {
+                    if (response.ok) {
+                        // alert(`Pokemon added to your Team!`);
+
+                    }
+                })
+                .catch(e => {
+                    console.log(e);
+                });
+        } else {
+            alert('There are no slots left on your team. Click "Draft Team" button to finish drafting.');
+            // return;
+        }
+        // currentPlayer = "Enemy";
+        // computerTurn();
+    });
+// };
 
 
 draftTeamBtnEl.addEventListener('click', event => {
@@ -87,42 +101,42 @@ setTimeout(() => {
 
 const computerTurn = () => {
     if (enemyTeam.length < 7) {
-    let buttons = document.getElementsByTagName("button");
-    let pokeChoiceButtons = [];
-    for (let i = 0; i < buttons.length; i++) {
-        const singleButton = buttons[i];
-        if (!singleButton.disabled) {
-            pokeChoiceButtons.push(singleButton);
+        let buttons = document.getElementsByTagName("button");
+        let pokeChoiceButtons = [];
+        for (let i = 0; i < buttons.length; i++) {
+            const singleButton = buttons[i];
+            if (!singleButton.disabled) {
+                pokeChoiceButtons.push(singleButton);
+            }
         }
-    }
-    pokeChoiceButtons.shift();
-    pokeChoiceButtons.shift();
-    pokeChoiceButtons.shift();
-    let pokeInfoComputerChoice = [];
-    // console.log(pokeChoiceButtons);
-    for (let i = 0; i < pokeChoiceButtons.length; i++) {
-        const pokeData = pokeChoiceButtons[i].id.split(" ");
-        pokeInfoComputerChoice.push(pokeData);
-    }
-    // console.log(pokeInfoComputerChoice);
-    pokeInfoComputerChoice = pokeInfoComputerChoice.map(poke => {
-        return {
-            hp: parseInt(poke[3]),
-            attack: parseInt(poke[4]),
-            defense: parseInt(poke[5]),
-            speed: parseInt(poke[6])
+        pokeChoiceButtons.shift();
+        pokeChoiceButtons.shift();
+        pokeChoiceButtons.shift();
+        let pokeInfoComputerChoice = [];
+        // console.log(pokeChoiceButtons);
+        for (let i = 0; i < pokeChoiceButtons.length; i++) {
+            const pokeData = pokeChoiceButtons[i].id.split(" ");
+            pokeInfoComputerChoice.push(pokeData);
         }
-    })
+        // console.log(pokeInfoComputerChoice);
+        pokeInfoComputerChoice = pokeInfoComputerChoice.map(poke => {
+            return {
+                hp: parseInt(poke[3]),
+                attack: parseInt(poke[4]),
+                defense: parseInt(poke[5]),
+                speed: parseInt(poke[6])
+            }
+        })
 
-    let highValueArray =[];
-    for (let i = 0; i < pokeInfoComputerChoice.length; i++) {
-        const highValue = (pokeInfoComputerChoice[i].hp) + (pokeInfoComputerChoice[i].attack) + (pokeInfoComputerChoice[i].defense) + (pokeInfoComputerChoice[i].speed);
-        highValueArray.push(highValue);
-    }
-    let highButtonIndex = highValueArray.indexOf(Math.max(...highValueArray));
-    // console.log(highButtonIndex);
-    let compChoiceButtonId = (pokeChoiceButtons[highButtonIndex].id);
-    let thisButton = document.getElementById(`${compChoiceButtonId}`);
+        let highValueArray = [];
+        for (let i = 0; i < pokeInfoComputerChoice.length; i++) {
+            const highValue = (pokeInfoComputerChoice[i].hp) + (pokeInfoComputerChoice[i].attack) + (pokeInfoComputerChoice[i].defense) + (pokeInfoComputerChoice[i].speed);
+            highValueArray.push(highValue);
+        }
+        let highButtonIndex = highValueArray.indexOf(Math.max(...highValueArray));
+        // console.log(highButtonIndex);
+        let compChoiceButtonId = (pokeChoiceButtons[highButtonIndex].id);
+        let thisButton = document.getElementById(`${compChoiceButtonId}`);
         thisButton.disabled = true;
         thisButton.innerText = "Enemy Team!"
         pokeInfo = compChoiceButtonId.split(" ");
@@ -140,17 +154,16 @@ const computerTurn = () => {
         alert(`Enemy drafted ${thisPokemon.pokemon_name}`)
         enemyTeam.push(thisPokemon);
         console.log(enemyTeam);
+    }
+};
+
+// game logic
+function playGame() {
+    if (isGameOver) return;
+    if (currentPlayer === "User") {
+        
+    }
 }
-};
-
-
-
-const coinflip = () => {
-    User = (Math.floor(Math.random() * 2) == 0);
-    if (User) {
-        currentPlayer = "User";
-    } else computerTurn();
-};
 
 setTimeout(() => {
     coinflip();
@@ -177,6 +190,12 @@ setTimeout(() => {
 //* change header/nav bar so that options available are only there based on status of user 
 
 //* finally, present! 
+
+
+// Game Play
+// computer finishes draft even if user's team is full?
+// better turn taking functionality. time between, disable the user without losing button disable? 
+// if user doesn't make a choice within specific time frame, randomly selected. 
 
 
 
