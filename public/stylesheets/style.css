@@ -1,8 +1,15 @@
+#random-name {
+	font-family: 'Staatliches';
+	font-size: 2rem;
+	
+	
+}
+
 .form-group {
-	font-family: Poppins;
+	font-family: 'Poppins';
 }
 #sign-up {
-	font-family: Poppins;
+	font-family: 'Poppins';
 	text-align: center;
 
 }
