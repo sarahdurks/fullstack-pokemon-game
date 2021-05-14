@@ -10,7 +10,10 @@ loginButtonEl.addEventListener('click', async (event) => {
   const email = emailEl.value.trim();
   const password = passwordEl.value.trim();
   // console.log(email, password);
-  if (email && password) {
+  if (!email || !password) {
+    alert("You must enter an email and password")
+  }
+  else if (email && password) {
     try {
       const response = await fetch('/api/users/login', {
         method: 'POST',
@@ -24,7 +27,7 @@ loginButtonEl.addEventListener('click', async (event) => {
       if (response.ok) {
         document.location.replace('/team');
       } else {
-        alert(response.statusText);
+        alert("Incorrect email or password, please try again!");
       }
     }
     catch (e) {
