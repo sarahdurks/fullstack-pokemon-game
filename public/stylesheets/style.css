@@ -1,40 +1,3 @@
-.carousel-container {
-	position: relative;
-  }
-  .carousel-item img {
-	object-fit:scale-down;
-  }
-  #carousel-thumbs {
-	background: rgba(255,255,255,.3);
-	bottom: 0;
-	left: 0;
-	padding: 0 50px;
-	position: absolute;
-	right: 0;
-  }
-  #carousel-thumbs img {
-	border: 5px solid transparent;
-	cursor: pointer;
-  }
-  #carousel-thumbs img:hover {
-	border-color: rgba(255,255,255,.3);
-  }
- 
-  #carousel-thumbs .selected img {
-	border-color: rgb(239, 245, 243);
-	border-width: 3px;
-	border-radius: 100%;
-  }
-  .carousel-control-prev-icon,
-  .carousel-control-next-icon {
-	height: 100px;
-	width: 100px;
-	outline: black;
-	background-size: 100%, 100%;
-	border-radius: 50%;
-	border: 1px solid black;
-	background-image: none;
-  }
 
 .draft-header {
 	background-image: url("https://res.cloudinary.com/actionfdfds/image/upload/v1620603338/intrologo_khbj0h.png") 50% no-repeat;
@@ -204,46 +167,6 @@ logoIcon {
     right: 0;
     z-index: 2;
 }
-
-
-carousel-container {
-	position: relative;
-  }
-  .carousel-item img {
-	object-fit:scale-down;
-  }
-  #carousel-thumbs {
-	background: rgba(255,255,255,.3);
-	bottom: 0;
-	left: 0;
-	padding: 0 50px;
-	position: absolute;
-	right: 0;
-  }
-  #carousel-thumbs img {
-	border: 5px solid transparent;
-	cursor: pointer;
-  }
-  #carousel-thumbs img:hover {
-	border-color: rgba(255,255,255,.3);
-  }
- 
-  #carousel-thumbs .selected img {
-	border-color: rgb(39, 228, 156);
-	border-width: 3px;
-	border-radius: 85%;
-  }
-  .carousel-control-prev-icon,
-  .carousel-control-next-icon {
-	height: 100px;
-	width: 100px;
-	outline: black;
-	background-size: 100%, 100%;
-	border-radius: 50%;
-	border: 1px solid black;
-	background-image: none;
-  }
-
 @-webkit-keyframes animate-positive{
     0%{ width: 0; }}
 

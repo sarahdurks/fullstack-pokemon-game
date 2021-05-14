@@ -88,6 +88,22 @@ clearDraftBtnEl.addEventListener('click', event => {
 
 
 
+// to do
+
+//* teampage.js (also .hbs)
+//1. create a form for team creating **team name/team-logo (.hbs) Sarah
+//2. button click listener for create team (do a post request for .html route team (/team)) Sarah
+// 3. Drop down for team name generator.
+
+//* draftpage-route
+
+//1. time issue-every 24 hours. *Yev
+
+//* change header/nav bar so that options available are only there based on status of user 
+
+//* finally, present! 
+
+
 
 
 
