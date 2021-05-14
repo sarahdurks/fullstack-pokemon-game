@@ -15,9 +15,11 @@
 font-weight: 800;
 text-align: center;
 
+text-shadow: 3px 2px #2b2929;
+
 }
 .text-light {
-text-shadow: 2px 2px #2b2929;
+text-shadow: 1px 1px #2b2929;
 }
 
 .carousel-container {
