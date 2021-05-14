@@ -1,6 +1,24 @@
 .form-group {
 	font-family: Poppins;
 }
+#sign-up {
+	font-family: Poppins;
+	text-align: center;
+
+}
+
+#welcome {
+	text-align: center;
+}
+
+#draftheader{
+font-weight: 800;
+text-align: center;
+
+}
+.text-light {
+text-shadow: 2px 2px #2b2929;
+}
 
 .carousel-container {
 	position: relative;
