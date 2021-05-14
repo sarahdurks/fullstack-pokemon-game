@@ -11,17 +11,20 @@
     <div class="container">
         <div class="row d-flex flex-column align-items-center">
             <div class="col-10">
-                <h1 class="banner_taital fs-2">Welcome back to The Pokémon Draft, {{team.team_name}}</h1>
+                <div class="card">
+                <h1 id="namesaved"> {{team.team_name}}</h1>
                 <img id="team-logo" class="card-img-top" src="{{team.team_logo}}" alt="team-logo">
-                {{!-- <h4 class="banner_taital">Your secret key for drafting is {{team.id}}</h4> --}}
+                <div id="teamstatus">
                 <p class="browse_text">You have {{team.pokemons.length}} Pokémon on your team. {{#if disable}} Your team
                     is full,
                     You can drop currently drafted Pokémon to find new talent if you want!
                     {{else}} To draft more Pokémon, please visit the draft page. {{/if}}</p>
+                    </div>
                 <div class="col-10 d-flex justify-content-evenly">
                     {{#unless disable}}
                     <button class="btn btn-dark mb-4"><a class="style-none text-white fs-lg-4" href="/draftpage">Draft
                             Team</a></button> {{/unless}}
+                </div>
                 </div>
             </div>
         </div>

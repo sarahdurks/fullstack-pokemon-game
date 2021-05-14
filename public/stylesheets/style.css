@@ -1,10 +1,21 @@
+
+
 #random-name {
 	font-family: 'Staatliches';
 	font-size: 2rem;
 	
 	
 }
-
+#namesaved {
+	font-family: 'Staatliches';
+	font-size: 2rem;
+	
+	
+}
+#teamstatus {
+	max-width: 20em;
+	word-wrap: normal;
+}
 .form-group {
 	font-family: 'Poppins';
 }
@@ -145,7 +156,9 @@ body {
 		
 	  }
 
-
+.card {
+	min-width: 18em;
+}
 
 
 .card-img-top {
