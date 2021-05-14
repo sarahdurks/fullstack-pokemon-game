@@ -16,13 +16,12 @@
                 <img id="team-logo" class="card-img-top" src="{{team.team_logo}}" alt="team-logo">
                 <div id="teamstatus">
                 <p class="browse_text">You have {{team.pokemons.length}} Pokémon on your team. {{#if disable}} Your team
-                    is full,
-                    You can drop currently drafted Pokémon to find new talent if you want!
+                    is full. You can drop currently drafted Pokémon to find new talent if you want!
                     {{else}} To draft more Pokémon, please visit the draft page. {{/if}}</p>
                     </div>
                 <div class="col-10 d-flex justify-content-evenly">
                     {{#unless disable}}
-                    <button class="btn btn-dark mb-4"><a class="style-none text-white fs-lg-4" href="/draftpage">Draft
+                    <button class="btn btn-dark btn-block mb-4"><a class="style-none text-white fs-lg-4" href="/draftpage">Draft
                             Team</a></button> {{/unless}}
                 </div>
                 </div>

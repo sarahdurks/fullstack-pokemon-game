@@ -9,7 +9,8 @@
 }
 
 .card-team {
-	height: min-content;
+	height: 70vh;
+
 }
 
 .browse_text{
@@ -59,11 +60,11 @@ text-shadow: 1px 1px #2b2929;
 
 .carousel-container {
 	position: relative;
-	margin-bottom: 2vh;
+	margin-bottom: 1vh;
   }
   .carousel-item img {
 	object-fit:scale-down;
-	max-height: 40vh;
+	max-height: 30vh;
   }
   #carousel-thumbs {
 	background: rgba(255,255,255,.3);
@@ -268,46 +269,3 @@ logoIcon {
     right: 0;
     z-index: 2;
 }
-
-
-carousel-container {
-	position: relative;
-  }
-  .carousel-item img {
-	object-fit:scale-down;
-  }
-  #carousel-thumbs {
-	background: rgba(255,255,255,.3);
-	bottom: 0;
-	left: 0;
-	padding: 0 50px;
-	position: absolute;
-	right: 0;
-  }
-  #carousel-thumbs img {
-	border: 5px solid transparent;
-	cursor: pointer;
-  }
-  #carousel-thumbs img:hover {
-	border-color: rgba(255,255,255,.3);
-  }
- 
-  #carousel-thumbs .selected img {
-	border-color: rgb(39, 228, 156);
-	border-width: 3px;
-	border-radius: 85%;
-  }
-  .carousel-control-prev-icon,
-  .carousel-control-next-icon {
-	height: 100px;
-	width: 100px;
-	outline: black;
-	background-size: 100%, 100%;
-	border-radius: 50%;
-	border: 1px solid black;
-	background-image: none;
-  }
-
-@-webkit-keyframes animate-positive{
-    0%{ width: 0; }}
-
