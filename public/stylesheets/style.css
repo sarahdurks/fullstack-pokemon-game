@@ -3,8 +3,17 @@
 #random-name {
 	font-family: 'Staatliches';
 	font-size: 2rem;
+	margin-top: 2vh;
 	
 	
+}
+
+.card-team {
+	height: min-content;
+}
+
+.browse_text{
+	font-family: 'Poppins';
 }
 #namesaved {
 	font-family: 'Staatliches';
@@ -50,9 +59,11 @@ text-shadow: 1px 1px #2b2929;
 
 .carousel-container {
 	position: relative;
+	margin-bottom: 2vh;
   }
   .carousel-item img {
 	object-fit:scale-down;
+	max-height: 40vh;
   }
   #carousel-thumbs {
 	background: rgba(255,255,255,.3);
@@ -84,6 +95,7 @@ text-shadow: 1px 1px #2b2929;
 	border: 1px solid black;
 	background-image: none;
   }
+
 
 .draft-header {
 	background-image: url("https://res.cloudinary.com/actionfdfds/image/upload/v1620603338/intrologo_khbj0h.png") 50% no-repeat;
