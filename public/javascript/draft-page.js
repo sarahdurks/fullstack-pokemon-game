@@ -55,10 +55,10 @@ PokemonBtnEl.addEventListener("click", (event) => {
 // Event listener for draft team button - to bulk create pokemons
 draftTeamBtnEl.addEventListener('click', event => {
     event.preventDefault();
-    if (pokeTeam.length <= 0) {
-        alert(`Please draft a pokemon to add it to the team`);
-        return;
-    }
+    // if (pokeTeam.length <= 0) {
+    //     alert(`Please draft a pokemon to add it to the team`);
+    //     return;
+    // }
     const response = fetch(`/api/pokemons/team`, {
         method: 'POST',
         body: JSON.stringify({
@@ -70,7 +70,7 @@ draftTeamBtnEl.addEventListener('click', event => {
     })
         .then(response => {
             if (response.ok) {
-                alert(`Pokemon Draft Completed!`);
+                // alert(`Pokemon Draft Completed!`);
                 document.location.replace('/team');
             }
         })

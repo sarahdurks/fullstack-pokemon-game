@@ -28,7 +28,7 @@ signupBtnEl.addEventListener('click', async (event) => {
             // check the response status
             if (response.ok) {
                 document.location.replace('/team');
-                alert('Sign-Up successful');
+                // alert('Sign-Up successful');
 
             } else {
                 alert(response.statusText);
