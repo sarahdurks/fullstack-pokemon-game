@@ -8,6 +8,18 @@
 	
 }
 
+#pokeTeamNaming {
+	margin-bottom: 2vh;
+
+}
+#instructions {
+	margin-top: 1vh;
+	margin-bottom: 1vh;
+}
+.createbutton {
+	margin-top: 2vh;
+	margin-bottom: 2vh;
+}
 .card-team {
 	height: 70vh;
 
@@ -35,10 +47,7 @@
 
 }
 
-.browse_text{
 
-font-family: Poppins;
-}
 .banner_taital {
 	font-family: Poppins;
 
