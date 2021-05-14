@@ -11,16 +11,17 @@
     <div class="container">
         <div class="row d-flex flex-column align-items-center">
             <div class="col-10">
-                <h1 class="banner_taital fs-2">Welcome back to Pokémon Draft {{team.team_name}}</h1>
+                <h1 class="banner_taital fs-2">Welcome back to The Pokémon Draft, {{team.team_name}}</h1>
                 <img id="team-logo" class="card-img-top" src="{{team.team_logo}}" alt="team-logo">
                 {{!-- <h4 class="banner_taital">Your secret key for drafting is {{team.id}}</h4> --}}
-                <p class="browse_text">You have {{team.pokemons.length}} Pokémon in your team. {{#if disable}} Your team is full,
-                    If you wish to draft different Pokémon, please drop Pokémon from your Team. 
-                    {{else}} To draft more Pokémon please visit the draft-page. If you wish to battle click on Go to Battle button.{{/if}}</p>
+                <p class="browse_text">You have {{team.pokemons.length}} Pokémon on your team. {{#if disable}} Your team
+                    is full,
+                    You can drop currently drafted Pokémon to find new talent if you want!
+                    {{else}} To draft more Pokémon, please visit the draft-page. {{/if}}</p>
                 <div class="col-10 d-flex justify-content-evenly">
                     {{#unless disable}}
-                    <button class="btn btn-dark mb-4"><a class="style-none text-white fs-lg-4" href="/draftpage">Draft Team</a></button> {{/unless}}
-                     {{!-- <button class="btn btn-dark mb-4"><a class="style-none text-white fs-lg-4" href="/battle">Go to Battle</a></button> --}}
+                    <button class="btn btn-dark mb-4"><a class="style-none text-white fs-lg-4" href="/draftpage">Draft
+                            Team</a></button> {{/unless}}
                 </div>
             </div>
         </div>
@@ -30,7 +31,7 @@
 
 <div class="container" id="listen">
 
-<!-- Pokemon Stat Cards -->
+    <!-- Pokemon Stat Cards -->
     <div class="row card-group">
         {{#each team.pokemons as |pokemon|}}
         <div class="col col-md-3" style="max-width:18rem">
@@ -47,21 +48,20 @@
                     </div>
                     <div class="progress">
                         <!-- Pokemon Attack-->
-                        <div id="attack" class="progress-bar  bg-danger" role="progressbar"
-                            style="width: {{attack}}%" aria-valuenow="{{attack}}" aria-valuemin="0" aria-valuemax="100">
+                        <div id="attack" class="progress-bar  bg-danger" role="progressbar" style="width: {{attack}}%"
+                            aria-valuenow="{{attack}}" aria-valuemin="0" aria-valuemax="100">
                             Attack</div>
                     </div>
                     <div class="progress">
                         <!-- Pokemon Defense-->
-                        <div id="defense" class="progress-bar  bg-info" role="progressbar"
-                            style="width: {{defense}}%" aria-valuenow="{{defense}}" aria-valuemin="0"
-                            aria-valuemax="100">Defense</div>
+                        <div id="defense" class="progress-bar  bg-info" role="progressbar" style="width: {{defense}}%"
+                            aria-valuenow="{{defense}}" aria-valuemin="0" aria-valuemax="100">Defense</div>
                     </div>
                     <div class="progress">
 
                         <!-- Pokemon Speed-->
-                        <div id="speed" class="progress-bar bg-secondary" role="progressbar"
-                            style="width: {{speed}}%" aria-valuenow="{{speed}}" aria-valuemin="0" aria-valuemax="100">
+                        <div id="speed" class="progress-bar bg-secondary" role="progressbar" style="width: {{speed}}%"
+                            aria-valuenow="{{speed}}" aria-valuemin="0" aria-valuemax="100">
                             Speed</div>
                     </div>
                     <div class="card-footer">

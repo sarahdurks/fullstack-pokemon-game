@@ -1,3 +1,35 @@
+.form-group {
+	font-family: Poppins;
+}
+#sign-up {
+	font-family: Poppins;
+	text-align: center;
+
+}
+
+.browse_text{
+
+font-family: Poppins;
+}
+.banner_taital {
+	font-family: Poppins;
+
+}
+#welcome {
+	text-align: center;
+}
+
+#draftheader{
+font-weight: 800;
+text-align: center;
+
+text-shadow: 3px 2px #2b2929;
+
+}
+.text-light {
+text-shadow: 1px 1px #2b2929;
+}
+
 .carousel-container {
 	position: relative;
   }
@@ -111,9 +143,10 @@ body {
 
 
 .card-img-top {
-	width:50% !important;
-	align-self: center;
-	margin-top: 10px;
+	margin-top: 5px;
+	max-height: 100px;
+
+	max-width: 100px;
 }
 
 
@@ -163,6 +196,7 @@ logoIcon {
 	align-items: center;
 	padding-right:  10px;
 	border-radius: 10px;
+	overflow: auto;
 	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
 }
@@ -176,9 +210,8 @@ logoIcon {
 .progress{
     height: 20px !important;
     background: #e9e9ea;
-    border-radius: 15px;
+    border-radius: 20px;
     margin-bottom: 30px;
-    overflow: visible;
     position: relative;
 }
 
@@ -186,7 +219,7 @@ logoIcon {
 .progress .progress-bar{
     box-shadow: none;
     border: none;
-    border-radius: 15px;
+    border-radius: 20px;
     position: relative;
     -webkit-animation: animate-positive 1s;
     animation: animate-positive 1s;
