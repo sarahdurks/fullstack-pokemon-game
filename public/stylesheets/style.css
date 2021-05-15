@@ -29,15 +29,12 @@
 	margin-top: 2vh;
 	height:70vh;
 	padding-top: 5vh;
+	border-radius: 5px;
 	
 
 
 }
 
-#teamtodraft {
-	min-width: 50px !important;
-	font-size: large !important;
-}
 .browse_text{
 	font-family: 'Poppins';
 }
@@ -62,7 +59,7 @@
 
 
 #draft-button {
-	max-width: ;
+	max-width: 300px;
 	align-items: center !important;
 }
 .banner_taital {
@@ -146,8 +143,21 @@ text-shadow: 1px 1px #2b2929;
 
 }
 
+
+#teamrodraft{
+font-family: 'Poppins', sans-serif;
+font-weight: 500;
+font-size: medium;
+align-self: center;
+}
 .form-group {
 	font-size: medium;
+}
+
+
+#teamToDraft {
+	max-width: 300px !important;
+	font-size: large !important;
 }
 
 #heroHeadline {
