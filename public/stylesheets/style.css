@@ -56,6 +56,10 @@
 	text-align: center;
 }
 
+.plain{
+	font-family:'Arial';
+}
+
 #draftheader{
 font-weight: 800;
 text-align: center;

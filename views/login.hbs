@@ -1,13 +1,16 @@
 {{> background}}
 
-<div class="container-fluid d-flex">
+ <!-- Login Page-->
 
+<div class="container-fluid d-flex">
     <form class="col-8 col-lg-3 position-absolute top-50 start-50 translate-middle p-10 m-10">
 
+        <!-- Logo -->
         <div class="form-group d-flex justify-content-center align-items-center">
-            <img height="150" src="https://res.cloudinary.com/actionfdfds/image/upload/v1621019080/Frame_129_egg2pk.png">
-            </div>
-           <div class="form-group">
+            <img height="150"
+                src="https://res.cloudinary.com/actionfdfds/image/upload/v1621019080/Frame_129_egg2pk.png">
+        </div>
+        <div class="form-group">
             <h3 id="draftheader" class="text-light">The Pokémon Draft</h3>
             <p id="welcome" class="text-light"> Welcome to the <strong>Pokémon Draft!</strong> Login and have fun. </p>
         </div>
@@ -18,23 +21,20 @@
 
         <!-- Password input -->
         <div class="form-group">
-            <input type="password" id="form1Example2" placeholder="Enter Password" class="form-control password-login" />
+            <input type="password" id="form1Example2" placeholder="Enter Password"
+                class="form-control password-login" />
         </div>
 
         <!-- Sign up section -->
         <div class="row m-4">
-                <!-- Signup link -->
-                    <a class="text-light" id="sign-up" href="/signup">New here? Sign up.</a>
-            </div>
-
-            <div class="form-group">
-                <!-- Submit button -->
-                <button id="loginbtn" type="submit" class="btn btn-dark btn-block mt-4 p-2">Log in</button>
-            </div>
-      
+            <!-- Signup link -->
+            <a class="text-light" id="sign-up" href="/signup">New here? Sign up.</a>
+        </div>
+        <div class="form-group">
+            <!-- Submit button -->
+            <button id="loginbtn" type="submit" class="btn btn-dark btn-block mt-4 p-2">Log in</button>
+        </div>
     </form>
 </div>
 </div>
 <script src="/javascript/login.js"></script>
-
-<!-- TO DO: Properly center logo-->
