@@ -39,4 +39,7 @@ signupBtnEl.addEventListener('click', async (event) => {
         }
 
     }
+    else {
+        alert("Please Provide a Username, Email, and Password!")
+    }
 });
