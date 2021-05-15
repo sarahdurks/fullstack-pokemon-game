@@ -1,4 +1,4 @@
-{{> header}}
+
 {{#unless team}}
 <!-- NEW USER-->
 {{> newteam}}
@@ -11,7 +11,7 @@
     <div class="container">
         <div class="row d-flex flex-column align-items-center">
             <div class="col-10">
-                <div class="card">
+                <div class="card card-team2">
                 <h1 id="namesaved"> {{team.team_name}}</h1>
                 <img id="team-logo" class="card-img-top" src="{{team.team_logo}}" alt="team-logo">
                 <div id="teamstatus">
@@ -21,7 +21,7 @@
                     </div>
                 <div class="col-10 d-flex justify-content-evenly">
                     {{#unless disable}}
-                    <button class="btn btn-dark btn-block mb-4"><a class="style-none text-white fs-lg-4" href="/draftpage">Draft
+                    <button id="teamToDraft"class="btn btn-dark btn-block mb-4"><a class="style-none text-white fs-lg-4" href="/draftpage">Draft
                             Team</a></button> {{/unless}}
                 </div>
                 </div>
@@ -82,3 +82,4 @@
 {{/if}}
 
 <script src="/javascript/team-page.js"></script>
+</div>

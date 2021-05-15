@@ -9,7 +9,7 @@ const server = dev ? 'http://localhost:5000' : process.env.SERVER_PROD;
 // let id;
 
 // const promisifedPingApi = new Promise ((resolve, reject) => {
-//   id = setTimeout(() => {
+//   id = setTimeout(() => {ma
 //     getPokemon();
 //   }, 500);
 // });
