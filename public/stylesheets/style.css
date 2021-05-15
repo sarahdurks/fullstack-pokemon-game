@@ -61,6 +61,10 @@
 }
 
 
+#draft-button {
+	max-width: ;
+	align-items: center !important;
+}
 .banner_taital {
 	font-family: Poppins;
 
@@ -138,7 +142,8 @@ text-shadow: 1px 1px #2b2929;
 	font-family: 'Poppins', sans-serif;
 	font-weight: 500;
 	font-size: medium;
-	justify-self: auto;
+	align-self: center;
+
 }
 
 .form-group {
@@ -153,11 +158,22 @@ text-shadow: 1px 1px #2b2929;
 	font-size: x-large !important;
 	font-weight: 600;
 
-
 }
 
 body {
 	font-size: medium;
+	background-image: url('https://res.cloudinary.com/actionfdfds/image/upload/v1621014519/newbackground_bfbjoz.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed !important;
+	background-position: center center;
+
+
+}
+
+.container {
+	background-color: transparent;
+	width: 100vw;
 }
 .signupbtn{
 	min-width: 50px !important;
@@ -226,11 +242,26 @@ body {
 	max-width: 50px !important;
 	max-height: 50px;
 }
+
+main {
+	color: transparent;
+	background-color: transparent;
+}
+
+#listen {
+	background-color: transparent;
+}
 .bg-image{
-	background-image: url('https://res.cloudinary.com/actionfdfds/image/upload/v1621014519/newbackground_bfbjoz.png') 50% no-repeat;
+	background-image: url('https://res.cloudinary.com/actionfdfds/image/upload/v1621014519/newbackground_bfbjoz.png');
 	background-size: cover;
+	background-repeat: no-repeat;
 	background-attachment: fixed !important;
-	height: 100vh;
+	background-position: center center;
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
 	text-align: center;
 	display: -webkit-flex;
 	display: -ms-flexbox;
@@ -242,6 +273,8 @@ body {
 	-ms-flex-pack: center;
 	justify-content: center;
 }
+
+
 
 .progress {
     margin-bottom: 3px;
