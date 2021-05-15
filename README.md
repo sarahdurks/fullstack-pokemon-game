@@ -22,7 +22,7 @@ In later-stage development efforts, this game will hav elogic closer to resembli
 - [x] PokéAPI
 - [x] Cloudinary
 - [x] Figma
-- [x] Bootstrap
+- [x] Bootstrap 5
 - [ ] Socket.io
 
 ## Table of Contents 📑
