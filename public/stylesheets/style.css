@@ -190,7 +190,6 @@ body {
 .card-img-top {
 	margin-top: 5px;
 	max-height: 100px;
-
 	max-width: 100px;
 }
 
@@ -209,7 +208,7 @@ body {
 	margin-left: 10px;
 }
 
-logoIcon {
+#logoIcon {
 	padding-left: 20px !important;
 	max-width: 50px !important;
 	max-height: 50px;
