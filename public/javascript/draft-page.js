@@ -31,7 +31,7 @@ PokemonBtnEl.addEventListener("click", (event) => {
     if (pokeTeam.length < dbTeam[1] && !pokeTeam.includes(buttonId) && buttonId != "") {
         let thisButton = document.getElementById(`${buttonId}`);
         thisButton.disabled = true;
-        thisButton.innerText = "Already Drafted!"
+        thisButton.innerText = "ALREADY DRAFTED!"
         pokeInfo = buttonId.split(" ");
         let thisPokemon = {
             pokedex: pokeInfo[0],
@@ -47,7 +47,7 @@ PokemonBtnEl.addEventListener("click", (event) => {
         pokeTeam.push(thisPokemon);
         // console.log(pokeTeam);
     } else {
-        alert('No more slot on your team. Click "Draft Team" button to finish drafting.');
+        alert('No more slots on your team. Click "Draft Team" button to finish drafting.');
         return;
     }
 });
@@ -55,10 +55,10 @@ PokemonBtnEl.addEventListener("click", (event) => {
 // Event listener for draft team button - to bulk create pokemons
 draftTeamBtnEl.addEventListener('click', event => {
     event.preventDefault();
-    // if (pokeTeam.length <= 0) {
-    //     alert(`Please draft a pokemon to add it to the team`);
-    //     return;
-    // }
+    if (pokeTeam.length <= 0) {
+        alert(`Please draft a Pokémon to add it to the team`);
+        return;
+    }
     const response = fetch(`/api/pokemons/team`, {
         method: 'POST',
         body: JSON.stringify({
@@ -70,7 +70,7 @@ draftTeamBtnEl.addEventListener('click', event => {
     })
         .then(response => {
             if (response.ok) {
-                // alert(`Pokemon Draft Completed!`);
+                alert(`Pokémon Draft Completed!`);
                 document.location.replace('/team');
             }
         })

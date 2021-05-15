@@ -209,7 +209,7 @@ body {
 }
 
 #logoIcon {
-	padding-left: 20px !important;
+	padding-left: 2vw; 
 	max-width: 50px !important;
 	max-height: 50px;
 }
