@@ -1,7 +1,7 @@
 # The Pokémon Draft [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![header](https://user-images.githubusercontent.com/77648727/118218306-0e83a000-b42c-11eb-9883-80f61ebf0c4c.png)
 
-
+See the application live [here](https://pokemon-fullstack.herokuapp.com/)
 
 ## Description 🏈
 This is a simple game built around the idea of selecting and saving a Pokemon team.
@@ -20,16 +20,17 @@ In later-stage development efforts, this game will hav elogic closer to resembli
 - [x] Node.js (express.js, mysql2, sequelize, nodemon, dotenv, express-handlebars)
 - [x] Heroku
 - [x] PokéAPI
-- [x] Socket.io
+- [x] Cloudinary
+- [x] Figma
+- [x] Bootstrap
+- [ ] Socket.io
 
 ## Table of Contents 📑
 * [User-Story](#User-Story)
-* [Acceptance-Criteria](#Acceptance-Criteria)
 * [Installation](#Installation)
 * [Usage](#Usage)
 * [License](#License)
 * [Authors](#Authors)
-* [Tests](#Tests)
 * [Screenshot](#Screenshot)
 * [Questions](#Questions)
 * ![Frame 118](https://user-images.githubusercontent.com/77648727/118218400-2c510500-b42c-11eb-87f9-1cb89e6d23fd.png)
@@ -40,11 +41,6 @@ In later-stage development efforts, this game will hav elogic closer to resembli
 > I WANT to make Data-based decisions and build a strong team       
 > SO I CAN win when I play in tournaments against My friends
 
-### Acceptance-Criteria :white_check_mark:
-> ADD     
-> THIS     
-> TOO       
-![Frame 117](https://user-images.githubusercontent.com/77648727/118218461-4db1f100-b42c-11eb-9713-c88e23c1d596.png)
 
 
 ### Installation & Usage 🧮
@@ -65,8 +61,9 @@ Sarah Durkin [GitHub](https://github.com/sarahdurks)
 ![Frame 120](https://user-images.githubusercontent.com/77648727/118218517-6de1b000-b42c-11eb-949e-c125ba69421d.png)
 
 
-### Tests 🤓
-No automated test are set up for this application yet.
+### Screenshot 🤓
+<img width="1440" alt="Screen Shot 2021-05-14 at 11 16 40 AM" src="https://user-images.githubusercontent.com/77648727/118343417-c02ed980-b4dd-11eb-907c-d519bd95cbe4.png">
+
 
 ### Questions 🤔
 If you have any questions, please reach out to the Author's email or via github.
