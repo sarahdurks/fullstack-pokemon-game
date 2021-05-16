@@ -1,41 +1,41 @@
 {{> background}}
-<d{{> background}}
-<div class="container-fluid d-flex">
-    <form class="col-8 col-lg-3 position-absolute top-50 start-50 translate-middle p-10 m-10">
 
-        <!-- Logo -->
-        <div class="form-group d-flex justify-content-center align-items-center">
-            <img height="150"
-                src="https://res.cloudinary.com/actionfdfds/image/upload/v1621019080/Frame_129_egg2pk.png">
-        </div>
+<div class="container-fluid d-flex">
+  <!-- Draft Logo -->
+  <form class="col-8 col-lg-3 position-absolute top-50 start-50 translate-middle p-10 m-10">
+    <div class="form-group d-flex justify-content-center align-items-center">
+      <img height="150" src="https://res.cloudinary.com/actionfdfds/image/upload/v1621019080/Frame_129_egg2pk.png">
+    </div>
+
+    <div>
+      <h3 id="draftheader" class="text-light">The Pokémon Draft</h3>
+      <p id="welcome" class="text-light"> Welcome to the <strong>Pokémon Draft!</strong> Let's get you signed up. </p>
+    </div>
+        <!-- Username input -->
         <div class="form-group">
-            <h3 id="draftheader" class="text-light">The Pokémon Draft</h3>
-            <p id="welcome" class="text-light"> Welcome to the <strong>Pokémon Draft!</strong> Login and have fun. </p>
+             <label class="form-label" for="form1Example1">User Name</label>
+            <input type="email" id="form1Example1" placeholder="Pick a Username" class="form-control username-signup" />
         </div>
+
         <!-- Email input -->
         <div class="form-group">
-            <label class="form-label" for="form1Example1">Email address</label>
-            <input type="email" id="form1Example1" placeholder="Enter Email" class="form-control email-login" />
+            <label class="form-label" for="form1Example2">Email Address</label>
+            <input type="email" id="form1Example2" placeholder="Enter Your Email" class="form-control email-signup" />
         </div>
+    
 
         <!-- Password input -->
         <div class="form-group">
-            <label class="form-label" for="form1Example2">Password</label>
-            <input type="password" id="form1Example2" placeholder="Enter Password" class="form-control password-login" />
+            <label class="form-label" for="form1Example3">Password</label>
+            <input type="password" id="form1Example3" placeholder="Enter a Password" class="form-control password-signup" />
+            
         </div>
-
-        <!-- Sign up section -->
-        <div class="container">
-                <!-- Signup link --><strong>
-                    <a class="text-light" id="sign-up" href="/signup">New here? Sign up.</a></strong>
-            </div>
-
-            <div class="form-group">
-                <!-- Submit button -->
-                <button id="loginbtn" type="submit" class="btn btn-dark btn-block mt-4 p-2">Log in</button>
-            </div>
-        </div>
+        
+        <!-- Submit button -->
+        <div class="form-group">
+            <button id="signupbtn" type="submit" class="btn btn-dark btn-block">Sign Up</button>
+              </div>
     </form>
 </div>
 
-<script src="/javascript/login.js"></script>
+<script src="/javascript/signup.js"></script>
