@@ -1,13 +1,13 @@
-<div class="container d-flex justify-content-evenly mt-1" id="listen">
-  <div class="row card-group">
+<div class="container-fluid d-flex flex-wrap justify-content-center mt-1" id="listen">
+  {{!-- <div class="row card-group"> --}}
     {{#each pokeData}}
-      <div class="col-12 col-sm-6 col-md-4">
+      {{!-- <div class="col-12 col-sm-6 col-md-4"> --}}
 
         <!--card template-->
         <div class="card">
           <img id="poke-img" class="card-img-top" src="{{pokemon_pic}}" alt="pokemon image">
           <div class="card-body">
-            <h5 id="poke-name" class="card-title">{{pokemon_name}}</h5>
+            <h5 id="poke-name" class="text-center">{{pokemon_name}}</h5>
             <div class="progress">
               <!-- HP -->
               <div id="hp" class="progress-bar " role="progressbar" style="width: {{hp}}%" aria-valuenow="{{hp}}" aria-valuemin="0" aria-valuemax="100">HP</div>
@@ -31,7 +31,7 @@
             {{/if}}
           </div>
         </div>
-      </div>
+      {{!-- </div> --}}
     {{/each}}
-  </div>
+  {{!-- </div> --}}
 </div>

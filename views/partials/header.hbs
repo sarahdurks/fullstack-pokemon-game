@@ -12,10 +12,11 @@
 
         <div class="collapse navbar-collapse d-lg-flex justify-content-lg-evenly" id="navbarCollapse1">
             {{#if loggedIn}}
-            <div class="navbar-nav">
-                <a href="team" class="nav-item text-light nav-link">My Team</a>
-                <a href="/draftpage" class="nav-item text-light nav-link">Draft Page</a>
-                <button type="submit" id="logout" class="btn btn-outline-light nav-item text-light nav-link">Logout</button>
+            <div class="navbar-nav d-flex justify-content-center align-items-baseline">
+                <a href="team" class="nav-item nav-link mt-1 p-5 fs-5">My Team</a>
+                <a href="/draftpage" class="nav-item nav-link p-5 mt-1 fs-5">Draft Pokemon</a>
+                {{!-- <a href="/battle" class="nav-item nav-link mt-1 fs-5">Challenge Team</a> --}}
+                <button type="submit" id="logout" class="btn nav-item text-light fs-5 nav-link">Logout</button>
             </div>
 
             {{/if}}
