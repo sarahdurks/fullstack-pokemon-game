@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "dev": "nodemon server.js",
     "seed": "node seeds/index.js"
   },
@@ -29,6 +29,7 @@
     "mysql2": "^2.2.5",
     "node-fetch": "^2.6.1",
     "sequelize": "^6.6.2",
+    "socket.io": "^4.1.1",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

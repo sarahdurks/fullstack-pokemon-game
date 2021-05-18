@@ -1,106 +1,398 @@
+html {
+	scroll-behavior: smooth;
+    margin: 0;
+	padding: 0;
+	min-height: 100%;
+	height: fit-content;
+}
+.greeting {
+	margin-top: 2rem;
+	font-family: "Poppins"
+	/* "Lucida Console", "Courier New", monospace; */
+  }
 
-.draft-header {
-	background-image: url("https://res.cloudinary.com/actionfdfds/image/upload/v1620603338/intrologo_khbj0h.png") 50% no-repeat;
-	
-	height: 10vh;
-	max-width: 10vh;
+
+/* linkedin and github links style*/
+.nav-item, .github, #logout {
+	color: white !important;
+}
+/*https://codepen.io/reiinii1/pen/aPGXEa*/
+[data-tooltip] {
+	position: relative;
+	z-index: 10;
+  }
+  
+  /* Positioning and visibility settings of the tooltip */
+  [data-tooltip]:before,
+  [data-tooltip]:after {
 	position: absolute;
-  	left: 0px;
-  	top: 0px;
+	visibility: hidden;
+	opacity: 0;
+	left: 50%;
+	bottom: calc(100% + 5px);
+	pointer-events: none;
+	transition: 0.2s;
+	will-change: transform;
+  }
+  
+  /* The actual tooltip with a dynamic width */
+  [data-tooltip]:before {
+	content: attr(data-tooltip);
+	padding: 10px 18px;
+	min-width: 50px;
+	max-width: 300px;
+	width: max-content;
+	width: -moz-max-content;
+	border-radius: 6px;
+	font-size: 14px;
+	background-color: rgba(59, 72, 80, 0.9);
+	background-image: linear-gradient(30deg,
+	  rgba(59, 72, 80, 0.44),
+	  rgba(59, 68, 75, 0.44),
+	  rgba(60, 82, 88, 0.44));
+	box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.2);
+	color: #fff;
+	text-align: center;
+	white-space: pre-wrap;
+	transform: translate(-50%, -5px) scale(0.5);
+  }
+  
+  /* Tooltip arrow */
+  [data-tooltip]:after {
+	content: '';
+	border-style: solid;
+	border-width: 5px 5px 0px 5px; /* CSS triangle */
+	border-color: rgba(55, 64, 70, 0.9) transparent transparent transparent;
+	transition-duration: 0s; /* If the mouse leaves the element, 
+								the transition effects for the 
+								tooltip arrow are "turned off" */
+	transform-origin: top;   /* Orientation setting for the
+								slide-down effect */
+	transform: translateX(-50%) scaleY(0);
+  }
+  
+  /* Tooltip becomes visible at hover */
+  [data-tooltip]:hover:before,
+  [data-tooltip]:hover:after {
+	visibility: visible;
+	opacity: 1;
+  }
+  /* Scales from 0.5 to 1 -> grow effect */
+  [data-tooltip]:hover:before {
+	transition-delay: 0.3s;
+	transform: translate(-50%, -5px) scale(1);
+  }
+  /* 
+	Arrow slide down effect only on mouseenter (NOT on mouseleave)
+  */
+  [data-tooltip]:hover:after {
+	transition-delay: 0.5s; /* Starting after the grow effect */
+	transition-duration: 0.2s;
+	transform: translateX(-50%) scaleY(1);
+  }
+
+
+/* github logo size */
+.github {
+	font-size: small;
+	text-align: center !important;
 }
 
-#draft-clear, #draft-team{
-	font-family: 'Poppins', sans-serif;
-	font-weight: 500;
-	font-size: medium;
-	justify-self: auto;
+
+.footerhead {
+	text-align: center !important;
+	size: 1.5rem;
+	margin-bottom: 2rem;
+	font-family: 'Poppins';
+
+}
+/* centering the names */
+.name {
+	text-align: center !important;
+	size: 1rem;
+
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	font-family: 'Poppins';
+}
+
+/* profile pictures style */
+.profile-pic {
+	border: 3px solid #ddd; /* Gray border */
+	width: 100px; /* Set a small width */
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 100%;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+ 
+/* logo signs */
+.logo {
+	width: 50px; /* Set a small width */
+	margin-left: 1rem;
+	margin-right: 1rem;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+}
+
+/* style of copyright */
+.copyright {
+	padding: 10px;
+	background: rgb(46, 45, 45);
+
+	font-size: small;
+	font-family:'Poppins';
 }
 
 .form-group {
-	font-size: medium;
-}
-
-#heroHeadline {
-	max-width: 10vh;
-}
-.navbar-brand{
-	font-family: 'Poppins', sans-serif;
-	font-size: x-large !important;
-	font-weight: 600;
-
-
-}
+	font-family: 'Poppins';
+  }
 
 body {
+	background-color: #000000;
+	background-image: linear-gradient(147deg, #000000 0%, #2c3e50 74%);
+	background-repeat: no-repeat;
+}
+  
+#sliderscreen {
+	align-content: center !important;
+}
+
+.card-team {
+	padding-top: 30px;
+}
+  
+#maxButton {
+	max-width: 400px;
+
+}
+  
+#background-hack {
+	background-color: #000000;
+	background-image: linear-gradient(147deg, #000000 0%, #2c3e50 74%);
+	background-repeat: no-repeat;
+	height: 100vh;
+}
+  
+.form-label {
+font-family: 'Poppins';
+font-size: small;
+color: white;
+text-shadow: 1px 1px #2b2929;
+}
+  
+  #random-name {
+	font-family: 'Staatliches';
+	font-size: 2rem;
+	flex-wrap: nowrap;
+	color: white;
+	margin-top: 2vh;
+	text-align: center;
+  }
+
+  
+  #random-name-div {
+	justify-items: baseline;
+  }
+  
+  #draftheader {
+	font-weight: 800;
+	text-align: center;
+	font-family: 'Poppins';
+	text-shadow: 3px 2px #2b2929;
+  }
+  
+  #sign-up {
+	font-family: 'Poppins';
+	text-align: center;
 	font-size: medium;
-}
-.signupbtn{
-	min-width: 50px !important;
-	font-size: large !important;
-}
-.card-title {
+  
+  }
+  
+  .browse_text {
+	font-family: 'Poppins';
+  }
+  
+  #welcome {
+	text-align: center;
+	text-shadow: 2px 2px #0b0a0a;
+  }
+  
+  #team-logo {
+	height: 10vh;
+	object-fit: scale-down;
+  }
+  
+  .text-light {
+	text-shadow: 1px 1px #2b2929;
+	font-family: 'Poppins';
+  }
+  
+  #create-team {
+	max-width: 800px;
+  }
+  
+  .carousel-container {
+	position: relative;
+	max-width: 800px;
+	align-content: center;
+	min-height: 15vh;
+  }
+  
+  .carousel-item img {
+	object-fit: scale-down;
+	max-height: 30vh;
+  }
+  
+  #carousel-thumbs {
+	background: rgba(255, 255, 255, .3);
+margin-top: 35px;
+	padding: 0;
+  }
+  
+  #carousel-thumbs img {
+	border: 5px solid transparent;
+	cursor: pointer;
+  }
+  
+  #carousel-thumbs img:hover {
+	border-color: rgba(255, 255, 255, .3);
+	border-radius: 100%;
+  }
+  
+  #carousel-thumbs .selected img {
+	border-color: rgb(239, 245, 243);
+	border-width: 3px;
+	border-radius: 100%;
+  }
+  
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+	height: 100px;
+	width: 100px;
+	outline: rgb(140, 137, 137);
+	background-size: 100%, 100%;
+	border-radius: 50%;
+	border: 1px solid rgb(156, 152, 152);
+	background-image: none;
+  }
+
+
+	/* #carousel-thumbs .selected img {
+	  border-color: rgb(39, 228, 156);
+	  border-width: 3px;
+	  border-radius: 85%;
+	} */
+  
+  .draft-header {
+	height: 10vh;
+	max-width: 10vh;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+  }
+  
+  #draft-clear,
+  #draft-team {
 	font-family: 'Poppins', sans-serif;
 	font-weight: 500;
 	font-size: medium;
+	width: 300px;
+	height: 80px;
+  }
+  
+  .form-group {
+	font-size: medium;
+  }
+  
+  #heroHeadline {
+	max-width: 10vh;
+  }
+  
+  .navbar-brand {
+	justify-self:left;
+	font-family: 'Poppins', sans-serif;
+	font-size: large !important;
+	font-weight: 600;
+  }
+  
+  body {
+	font-size: medium;
+  }
+  
+  .signupbtn {
+	min-width: 50px !important;
+	font-size: large !important;
+  }
+  
+  .card-title {
+	font-family: 'Poppins', sans-serif;
+	font-weight: 700;
+	font-size: medium;
 	align-self: center !important;
-}
+	width: 16rem;
+  }
+  
+  .card-body {
+	width: 16rem;
+  }
+  
+  .btnDraft {
+	color: #faf8f8;
+	align-self: center;
+	background-color: rgb(14, 54, 107);
+	border-color: rgb(31, 4, 130);
+	border-width: 1px;
+	font-family: 'Poppins', sans-serif;
+	font-size: 1rem;
+	border-radius: 5px;
+  padding: .5rem;
+  }
 
-	.btnDraft {
-		color: #faf8f8;
-		align-self: center;
-		background-color: rgb(14,54,107);
-		border-color:rgb(31, 4, 130);
-		border-width: 1px;
-		font-family: 'Poppins', sans-serif;
-		font-size: 1rem;
-		padding-left: 25px !important;
-		padding-right: 25px!important;
-		min-height: 25px;
-		border-radius: 5px;
-	  }
-	  
-	  .btnDraft:hover,
-	  .btnDraft:active,
-	  .btnDraft:focus,
-	  .btnDraft.active {
-		background-color: 
-		rgb(14,54,107);		
-		color: #ffffff;
-		border-color:  rgb(14,54,107);
-		
-	  }
-
-
-
-
-.card-img-top {
-	width:50% !important;
+  .draftpagebtn {
+	  margin: 5px;
+  }
+  
+  .btnDraft:hover,
+  .btnDraft:active,
+  .btnDraft:focus,
+  .btnDraft.active {
+	background-color:
+	  rgb(14, 54, 107);
+	color: #ffffff;
+	border-color: rgb(14, 54, 107);
+  }
+  
+  .card-img-top {
+	width: 40% !important;
 	align-self: center;
 	margin-top: 10px;
-}
-
-
-.nav-item{
+	width: 12rem;
+  }
+  
+  .nav-item {
 	font-family: 'Poppins', sans-serif;
 	font-size: large;
 	font-weight: 500;
-}
-
-
-.btn-outline-light
-{	font-family: 'Poppins', sans-serif;
+  }
+  
+  .btn-outline-light {
+	font-family: 'Poppins', sans-serif;
 	font-size: large !important;
 	font-weight: 500;
 	margin-left: 10px;
-}
-
-logoIcon {
+  }
+  
+  #logoIcon {
 	padding-left: 20px !important;
 	max-width: 50px !important;
 	max-height: 50px;
-}
-.bg-image{
-	background: 50% no-repeat; 
+  }
+  
+  .bg-image {
+	background-image: url('https://res.cloudinary.com/actionfdfds/image/upload/v1621014519/newbackground_bfbjoz.png');
+	background: 50% no-repeat;
 	background-size: cover;
 	height: 100vh;
 	text-align: center;
@@ -113,60 +405,87 @@ logoIcon {
 	-webkit-justify-content: center;
 	-ms-flex-pack: center;
 	justify-content: center;
-}
-
-.progress {
-    margin-bottom: 3px;
-}
-
-.card {
-    margin-bottom: 10px;
-    margin-top: 10px;
+  }
+  
+  .progress {
+	margin-bottom: 3px;
+	margin: 4px;
+  }
+  
+  .card {
+	margin-bottom: 10px;
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding-bottom: 10px;
+	padding-top: 10px;
 	padding-left: 10px;
+	padding-right: 10px;
+	width: 15rem !important;
 	align-items: center;
-	padding-right:  10px;
 	border-radius: 10px;
 	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  }
+  
+  .progress-title {
+	font-size: 20px;
+	font-weight: 700;
+	color: #333;
+	text-transform: uppercase;
+	margin: 0 0 25px;
+  }
+  
+  .progress {
+	height: 20px !important;
+	background: #e9e9ea;
+	border-radius: 15px;
+	margin-bottom: 30px;
+	overflow: visible;
+	position: relative;
+  }
+  
+  .progress .progress-bar {
+	box-shadow: none;
+	border: none;
+	border-radius: 15px;
+	position: relative;
+	-webkit-animation: animate-positive 1s;
+	animation: animate-positive 1s;
+  }
+  
+  .progress .progress-value {
+	width: 14rem;
+	height: 35px;
+	line-height: 27px;
+	border-radius: 20px;
+	background: #fff;
+	font-size: 17px;
+	font-weight: 600;
+	position: absolute;
+	top: -12px;
+	right: 0;
+	z-index: 2;
+  }
 
-}
-.progress-title{
-    font-size: 20px;
-    font-weight: 700;
-    color: #333;
-    text-transform: uppercase;
-    margin: 0 0 25px;
-}
-.progress{
-    height: 20px !important;
-    background: #e9e9ea;
-    border-radius: 15px;
-    margin-bottom: 30px;
-    overflow: visible;
-    position: relative;
-}
+.namesaved {
+	font-family: 'Staatliches';
+	font-size: 2.4rem;
+	flex-wrap: nowrap;
+	color: white;
+	text-align: center;
+  }
 
+  .removeBtn {
+  	color: #faf8f8;
+	align-self: center;
+	border-width: 1px;
+	font-family: 'Poppins', sans-serif;
+	font-size: 1rem;
+	border-radius: 5px;
+  padding: .5rem !important;
+  width: 100%;
+  }
 
-.progress .progress-bar{
-    box-shadow: none;
-    border: none;
-    border-radius: 15px;
-    position: relative;
-    -webkit-animation: animate-positive 1s;
-    animation: animate-positive 1s;
-}
-.progress .progress-value{
-    width: 70px;
-    height: 35px;
-    line-height: 27px;
-    border-radius: 20px;
-    background: #fff;
-    font-size: 17px;
-    font-weight: 600;
-    position: absolute;
-    top: -12px;
-    right: 0;
-    z-index: 2;
-}
-@-webkit-keyframes animate-positive{
-    0%{ width: 0; }}
-
+  .buttonWidth {
+    width: 20rem !important
+  }

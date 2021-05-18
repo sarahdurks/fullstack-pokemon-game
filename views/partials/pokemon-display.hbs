@@ -1,42 +1,42 @@
-<div class="container" id="listen">
-    <div class="row card-group">
-        {{#each pokeData}}
-        <div class="col col-md-3" style="max-width:18rem">
-            <div class="card">
-                <img id="poke-img" class="card-img-top" src="{{pokemon_pic}}" alt="pokemon image">
-                <div class="card-body">
-                    <h5 id="poke-name" class="card-title">{{pokemon_name}}</h5>
-                    <div class="progress">
-                          <!-- HP -->
-                        <div id="hp" class="progress-bar " role="progressbar" style="width: {{hp}}%"
-                            aria-valuenow="{{hp}}" aria-valuemin="0" aria-valuemax="100">HP</div>
-                    </div>
-                    <div class="progress">
-                          <!-- Attack -->
-                        <div id="attack" class="progress-bar  bg-danger" role="progressbar"
-                            style="width: {{attack}}%" aria-valuenow="{{attack}}" aria-valuemin="0" aria-valuemax="100">
-                            Attack</div>
-                    </div>
-                    <div class="progress"> 
-                         <!-- Defense -->
-                        <div id="defense" class="progress-bar bg-info" role="progressbar"
-                            style="width: {{defense}}%" aria-valuenow="{{defense}}" aria-valuemin="0"
-                            aria-valuemax="100">Defense</div>
-                    </div>
-                    <div class="progress">
-                         <!-- Speed-->
-                        <div id="speed" class="progress-bar  bg-secondary" role="progressbar"
-                            style="width: {{speed}}%" aria-valuenow="{{speed}}" aria-valuemin="0" aria-valuemax="100">
-                            Speed</div>
-                    </div>
-                        {{#if selected}}
-                        <button id="{{pokedex}} {{pokemon_name}} {{pokemon_pic}} {{hp}} {{attack}} {{defense}} {{speed}}" type="submit" data-selected="{{selected}}" name="draftmeBtn" class="btnDraft"disabled>Already Drafted!</button>
-                        {{else}}
-                        <button id="{{pokedex}} {{pokemon_name}} {{pokemon_pic}} {{hp}} {{attack}} {{defense}} {{speed}}" type="submit" data-selected="{{selected}}" name="draftmeBtn" class="btnDraft">DRAFT ME</button>
-                        {{/if}}
-                </div>
-            </div>
+<div class="container-fluid d-flex flex-wrap justify-content-center m-2 p-2" id="listen">
+  
+    {{#each pokeData}}
+      <!--card template-->
+      <div class="card">
+        <img id="poke-img" class="card-img-top" src="{{pokemon_pic}}" alt="pokemon image">
+        <div class="card-body">
+          <h6 id="poke-name" class="text-center fs-6">{{pokemon_name}}</h6>
+          <div class="progress">
+            <!-- HP -->
+            <div id="hp" class="progress-bar " role="progressbar" style="width: {{hp}}%" aria-valuenow="{{hp}}"
+              aria-valuemin="0" aria-valuemax="100">HP</div>
+          </div>
+          <div class="progress">
+            <!-- Attack -->
+            <div id="attack" class="progress-bar  bg-danger" role="progressbar" style="width: {{attack}}%"
+              aria-valuenow="{{attack}}" aria-valuemin="0" aria-valuemax="100"> Attack</div>
+          </div>
+          <div class="progress">
+            <!-- Defense -->
+            <div id="defense" class="progress-bar bg-info" role="progressbar" style="width: {{defense}}%"
+              aria-valuenow="{{defense}}" aria-valuemin="0" aria-valuemax="100">Defense</div>
+          </div>
+          <div class="progress">
+            <!-- Speed-->
+            <div id="speed" class="progress-bar  bg-secondary" role="progressbar" style="width: {{speed}}%"
+              aria-valuenow="{{speed}}" aria-valuemin="0" aria-valuemax="100"> Speed</div>
+          </div>
+          {{#if selected}}
+          <button id="{{pokedex}} {{pokemon_name}} {{pokemon_pic}} {{hp}} {{attack}} {{defense}} {{speed}}"
+            type="submit" data-selected="{{selected}}" name="draftmeBtn" class="btn-block btnDraft"
+            disabled>DRAFTED!</button>
+          {{else}}
+          <button id="{{pokedex}} {{pokemon_name}} {{pokemon_pic}} {{hp}} {{attack}} {{defense}} {{speed}}"
+            type="submit" data-selected="{{selected}}" name="draftmeBtn" class="btn-block btnDraft p-2">DRAFT ME</button>
+          {{/if}}
         </div>
-        {{/each}}
-    </div>
+      </div>
+    
+    {{/each}}
+  
 </div>

@@ -31,7 +31,7 @@ PokemonBtnEl.addEventListener("click", (event) => {
     if (pokeTeam.length < dbTeam[1] && !pokeTeam.includes(buttonId) && buttonId != "") {
         let thisButton = document.getElementById(`${buttonId}`);
         thisButton.disabled = true;
-        thisButton.innerText = "Already Drafted!"
+        thisButton.innerText = "DRAFTED!"
         pokeInfo = buttonId.split(" ");
         let thisPokemon = {
             pokedex: pokeInfo[0],
@@ -46,8 +46,10 @@ PokemonBtnEl.addEventListener("click", (event) => {
         }
         pokeTeam.push(thisPokemon);
         // console.log(pokeTeam);
+    } else if (pokeTeam.length == dbTeam[1]) {
+        alert('No more slots on your team. Click "Draft Team" button to finish drafting.');
+        return;
     } else {
-        alert('No more slot on your team. Click "Draft Team" button to finish drafting.');
         return;
     }
 });
@@ -70,7 +72,7 @@ draftTeamBtnEl.addEventListener('click', event => {
     })
         .then(response => {
             if (response.ok) {
-                alert(`Pokemon Draft Completed!`);
+                // alert(`Pokemon Draft Completed!`);
                 document.location.replace('/team');
             }
         })
@@ -86,22 +88,6 @@ clearDraftBtnEl.addEventListener('click', event => {
     location.reload();
 });
 
-
-
-// to do
-
-//* teampage.js (also .hbs)
-//1. create a form for team creating **team name/team-logo (.hbs) Sarah
-//2. button click listener for create team (do a post request for .html route team (/team)) Sarah
-// 3. Drop down for team name generator.
-
-//* draftpage-route
-
-//1. time issue-every 24 hours. *Yev
-
-//* change header/nav bar so that options available are only there based on status of user 
-
-//* finally, present! 
 
 
 

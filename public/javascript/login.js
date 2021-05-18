@@ -24,8 +24,10 @@ loginButtonEl.addEventListener('click', async (event) => {
       if (response.ok) {
         document.location.replace('/team');
       } else {
-        alert(response.statusText);
-      }
+        const thisresponse = await response.json();
+        console.log(thisresponse);
+        alert(thisresponse.message);
+    }
     }
     catch (e) {
       console.log(e);

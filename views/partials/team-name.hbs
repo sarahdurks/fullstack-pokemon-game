@@ -1,13 +1,10 @@
-
-<div class="input-group mb-3">
-  <select class="custom-select" id="team-name">
-    <option selected>Pick a team name..</option>
-    <option value="1"></option>
-    {{#each teamNamesArr as |team_name|}}
-    <option value="{{team_name}}">{{team_name}}</option>
-    {{/each}}
-  </select>
-  <div class="input-group-append">
-    <label class="input-group-text" for="team-name">Select</label>
+<div class="card-team d-flex flex-column justify-content-evenly mt-5">
+  <p id="instructions" class="text-light text-center">Lets get started. First, pick a team name and logo to create a Team</p>
+  <div id="random-name-div" class="input-group mb-3">
+    <h2 class="text-center mx-auto" id="random-name"></h2>
+  </div>
+  <p class="text-light text-center">Generate team name ideas below.</p>
+  <div class="d-flex justify-content-evenly mt-2 text-center flex-wrap">
+  <button class="btn btn-dark mb-4 p-2" id="pokeTeamNaming">Generate New Name</button>
   </div>
 </div>

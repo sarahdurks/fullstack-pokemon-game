@@ -1,9 +1,8 @@
 const router = require('express').Router();
 const { Team, Pokemon } = require('../../models');
 const sessionAuth = require('../../utils/auth');
-const { QueryTypes } = require('sequelize');
 
-// GET /team
+// GET /api/team
 router.get('/', sessionAuth, (req, res) => {
     Team.findOne({
         where: { user_id: req.session.user_id },
@@ -12,7 +11,7 @@ router.get('/', sessionAuth, (req, res) => {
                 model: Pokemon,
                 attributes: ['pokedex', 'pokemon_name', 'pokemon_pic', 'hp', 'attack', 'defense', 'speed'],
             }]
-            
+
     })
         .then(teamData => {
             if (teamData) {
@@ -26,7 +25,7 @@ router.get('/', sessionAuth, (req, res) => {
         });
 });
 
-// POST team
+// POST /api/team
 router.post('/', sessionAuth, (req, res) => {
     Team.create({
         team_name: req.body.team_name,
@@ -49,4 +48,3 @@ router.post('/', sessionAuth, (req, res) => {
 
 
 module.exports = router;
-  

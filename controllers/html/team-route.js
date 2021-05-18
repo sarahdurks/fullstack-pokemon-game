@@ -5,7 +5,7 @@ const sessionAuth = require('../../utils/auth');
 
 // Generating random team names
 let adjective = [ // madlib words https://studentsandwriters.com/2018/02/09/funny-mad-libs-word-lists-adjectives-nouns-and-verbs-2/
-    'Confused', 'Demanding', 'Ultimate', 'Drunken', 'Greedy', 'Hyperactive', 'Misunderstood', 'Out-of-Control', 'Rebellious', 'Territorial', 'Useless', 'Sassy', 'Salty', 'Hungry', 'Grumpy', 'Top-Secret', 'Barely Qualified', 'YOLO', 'Litty', 'Top-Secret', 'Major Key', '#Winning', 'Trill', '#Winning', 'Too Cool'
+    'Confident', 'Demanding', 'Ultimate', 'Lovely', 'Victorious', 'Hyperactive', 'Ardent', 'Majestic', 'Rebellious', 'Territorial', 'Marvelous', 'Sassy', 'Mighty', 'Hungry', 'Wonderful', 'Winning', 'Too Cool'
 ];
 let legendary = [ // Legendary Pokemon https://pokemongo.fandom.com/wiki/Legendary_Pok%C3%A9mon
     'Articunos', 'Zapdos', 'Mew Twos', 'Raikous', 'Enteis', 'Suicunes', 'Cobalions', 'Tornadus', 'Thundurus', 'Landorus', 'Moltres'
@@ -14,7 +14,7 @@ let pokeCity = [ // Locations in pokemon world https://bulbapedia.bulbagarden.ne
     'Abandoned Ship', 'Artisan Cave', 'Cave of Being', 'Citadark Isle', 'Dark Cave', 'Dreamyard', 'Eterna Forest', 'Flower Paradise', 'Giant Mirror', 'Gnarled Den', 'Lake of Rage', 'Outcast Island'
 ];
 let attack = [ // Pokemon moves https://bulbapedia.bulbagarden.net/wiki/List_of_moves
-    'Double Slap', 'Mega Kick', 'Pay Day', 'Slam', 'Stomp', 'Fire Punch', 'Vine Whip', 'Fly', 'Thrash', 'Roar', 'Growl', 'Acid', 'Sonic Boom', 'Headbutt'
+    'Double Slap', 'Mega Kick', 'Pay Day', 'Slam', 'Stomp', 'Fire Punch', 'Vine Whip', 'Fly', 'Thrash', 'Roar', 'Growl', 'Sonic Boom', 'Headbutt'
 ];
 
 function nameTeam(id) {
@@ -23,31 +23,28 @@ function nameTeam(id) {
 
 let teamBuild = [
     `The ${nameTeam(adjective)} ${nameTeam(legendary)}`,
-    `${nameTeam(adjective)} ${nameTeam(pokeCity)}`,
-    `2 ${nameTeam(adjective)} 2 ${nameTeam(attack)}`,
-    `${nameTeam(adjective)} 4 Lyfe`,
-    `Team ${nameTeam(adjective)}`,
-    `Team ${nameTeam(legendary)}`,
-    `Team ${nameTeam(pokeCity)}`,
-    `${nameTeam(legendary)} With ${nameTeam(legendary)}`,
-    `${nameTeam(legendary)} From ${nameTeam(pokeCity)}`,
     `${nameTeam(legendary)} ${nameTeam(attack)}`,
-    `${nameTeam(legendary)} Don’t ${nameTeam(attack)}`,
-    `${nameTeam(pokeCity)} ${nameTeam(legendary)}`,
-    `${nameTeam(pokeCity)}’s ${nameTeam(adjective)}  ${nameTeam(legendary)}`,
-    `${nameTeam(pokeCity)}’s Potions`,
-    `${nameTeam(attack)} & ${nameTeam(attack)}`,
-    `Level Up & ${nameTeam(attack)}`
+    `${nameTeam(adjective)} Forever`,
+    `${nameTeam(legendary)} Warriors`,
+    `Team ${nameTeam(pokeCity)}`,
+    `Level Up & ${nameTeam(attack)}`,
+    `The ${nameTeam(adjective)} ${nameTeam(legendary)}`,
+    `${nameTeam(legendary)} ${nameTeam(attack)}`,
+    `${nameTeam(adjective)} 4 Lyfe`,
+    `${nameTeam(legendary)} Champions`,
+    `Team ${nameTeam(pokeCity)}`,
+    `${nameTeam(attack)} Queen`
 ];
 
 let teamNamesArr = [];
 const pokeTeamName = () => {
     for (let i = 0; i < 15; i++) {
         var teamName = teamBuild[Math.floor(Math.random() * teamBuild.length)];
-        if(!teamNamesArr.includes(teamName)) {
+        if(!teamNamesArr.includes(teamName) && teamName !== undefined) {
             teamNamesArr.push(teamName);
         } 
     }
+    console.log(teamNamesArr);
     return teamNamesArr;
 };
 // End of generating random team names.
@@ -68,11 +65,11 @@ router.get('/', sessionAuth, (req, res) => {
             if (teamData) {
                 const team = teamData.get({ plain: true });
                 const disable = team.pokemons.length >= 6;
-                console.log(team, disable);
+                // console.log(team, disable);
                 res.render('team', { team, loggedIn: true, disable: disable });
             } else {
                 pokeTeamName();
-                console.log(teamNamesArr);
+                // console.log(teamNamesArr);
                 res.render('team', { team: false, loggedIn: true, teamNamesArr:teamNamesArr });
             }
         })

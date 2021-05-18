@@ -2,19 +2,22 @@ const router = require('express').Router();
 const fetch = require('node-fetch');
 const sessionAuth = require('../../utils/auth');
 const PokemonPull = require('../../models/PokemonPull');
-const { Sequelize , Op } = require('sequelize');
-const dev = process.env.NODE_ENV !== 'production';
+const { Sequelize, Op } = require('sequelize');
+const dev = (process.env.NODE_ENV != 'production');
+const server = dev ? 'http://localhost:5000' : process.env.SERVER_PROD;
 
-const server = dev ? 'http://localhost:5000' : 'https://your_deployment.server.com';
 
 
 
 // Function to fetch pokemon every 24hrs
 let id;
-let pokemonTable; 
-PokemonPull.findOne({where : {hp: {[Op.gt]:1}}}).then(res => {
-  pokemonTable = res.dataValues.date
+PokemonPull.findOne({ where: { hp: { [Op.gt]: 1 } } }).then(res => {
+    console.log('I am here', res)
+    getPokemon(res)
+
+
 })
+// getPokemon()
 
 // let id;
 
@@ -44,6 +47,7 @@ PokemonPull.findOne({where : {hp: {[Op.gt]:1}}}).then(res => {
 
 // fetching our selected pokedex from database
 let selectedPokedex = [];
+let pokeNums = [];
 setTimeout(() => {
     fetch(`${server}/api/pokemons`)
         .then(response => response.json())
@@ -52,8 +56,12 @@ setTimeout(() => {
                 const pokedex = data[i].pokedex;
                 selectedPokedex.push(pokedex)
             }
+            // console.log("selected pokedex follows")
             // console.log(selectedPokedex);
 
+        })
+        .then(() => {
+            forLoop();
         })
         .catch(e => {
             console.log(e);
@@ -61,70 +69,71 @@ setTimeout(() => {
         });
 }, 500);
 
-// setting empty array to hold random pokemon ids to pull from api
-let pokeNums = [];
 
 // adding 20 random numbers to our array, making sure there are no repeats
-for (let i = 0; i < 20; i++) {
-    const singlePokeNum = Math.floor(Math.random() * 898) + 1;
-    if (!pokeNums.includes(singlePokeNum) && !selectedPokedex.includes(singlePokeNum)) {
-        pokeNums.push(singlePokeNum);
+const forLoop = () => {
+    for (let i = 0; i < 20; i++) {
+        const singlePokeNum = Math.floor(Math.random() * 898) + 1;
+        if (!pokeNums.includes(singlePokeNum) && !selectedPokedex.includes(singlePokeNum)) {
+            pokeNums.push(singlePokeNum);
+        }
     }
 };
-let pokeData = [];
 
-const pokemonDB = PokemonPull.findAll
+const pokemonDB = PokemonPull.findAll()
+
+
 // looping through our array, using numbers as pokemon to get pokemon data
-const getPokemon = () => {
-console.log(pokemonTable)
-  const today = new Date().getDate();
-  // console.log(today)
+let pokeData = [];
+const getPokemon = (day) => {
+    const today = new Date().getDate();
+    console.log('Insdide getPokemon', day)
 
-  if (today !== pokemonTable|| !pokemonTable) {
+    if (today !== day || !day) {
 
-    PokemonPull.drop()
+        PokemonPull.drop()
 
-    for (let i = 0; i < pokeNums.length; i++) {
-      const pokeNum = pokeNums[i];
-      fetch(`https://pokeapi.co/api/v2/pokemon/${pokeNum}`)
-          .then(response => response.json())
-          .then(data => {
-              let eachPoke =
-              {
-                  name: (data.name).toUpperCase(),
-                  id: data.id,
-                  hp: data.stats[0].base_stat,
-                  attack: data.stats[1].base_stat,
-                  defense: data.stats[2].base_stat,
-                  speed: data.stats[5].base_stat,
-                  imageSrc: data.sprites.front_default,
-                  date: new Date().getDate(),
-              };
-              pokeData.push(eachPoke);
-          }).then(() => {
-            if (pokeNums.length === pokeData.length) {
-              pokeData.forEach(pokemon => {
-                PokemonPull.create({ 
-                  name: pokemon.name,
-                  id: pokemon.id,
-                  hp: pokemon.hp,
-                  attack: pokemon.attack,
-                  defense: pokemon.defense,
-                  speed: pokemon.speed,
-                  imageSrc: pokemon.imageSrc,
-                  date: pokemon.date
+        for (let i = 0; i < pokeNums.length; i++) {
+            const pokeNum = pokeNums[i];
+            fetch(`https://pokeapi.co/api/v2/pokemon/${pokeNum}`)
+                .then(response => response.json())
+                .then(data => {
+                    let eachPoke =
+                    {
+                        name: (data.name).toUpperCase(),
+                        id: data.id,
+                        hp: data.stats[0].base_stat,
+                        attack: data.stats[1].base_stat,
+                        defense: data.stats[2].base_stat,
+                        speed: data.stats[5].base_stat,
+                        imageSrc: data.sprites.front_default,
+                        date: new Date().getDate(),
+                    };
+                    pokeData.push(eachPoke);
+                }).then(() => {
+                    if (pokeNums.length === pokeData.length) {
+                        pokeData.forEach(pokemon => {
+                            PokemonPull.create({
+                                name: pokemon.name,
+                                id: pokemon.id,
+                                hp: pokemon.hp,
+                                attack: pokemon.attack,
+                                defense: pokemon.defense,
+                                speed: pokemon.speed,
+                                imageSrc: pokemon.imageSrc,
+                                date: pokemon.date
+                            })
+                        })
+
+                        // console.log("pokedata",pokeData);
+                    }
+
                 })
-              })
+        }
 
-              // console.log("pokedata",pokeData);
-            }
-            
-          }) 
-  }
-
-  } else {
-      console.log('Hello there!')
-  }
+    } else {
+        console.log('Hello there!')
+    }
 };
 
 //         const pokeNum = pokeNums[i];
@@ -151,7 +160,7 @@ console.log(pokemonTable)
 //     }
 // };
 
-getPokemon();
+// getPokemon();
 
 // Function to fetch pokemon every 24hrs??????
 
@@ -162,6 +171,7 @@ getPokemon();
 setInterval(getPokemon, 1000 * 60 * 60 * 24);
 
 
+// Post request to update pokemon data after the pokemon is drafted to a team
 router.post("/updatePokeData", (req, res) => {
     console.log("this is req.body");
     console.log(req.body);
@@ -177,6 +187,7 @@ router.post("/updatePokeData", (req, res) => {
     }
 });
 
+// Post request to update pokemon data after the pokemon is removed from a team
 router.post("/updatePokeDataDelete", (req, res) => {
     console.log("this is req.body.id");
     console.log(req.body.id);

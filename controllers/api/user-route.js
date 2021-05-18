@@ -50,8 +50,9 @@ router.post('/', (req, res) => {
       });
     })
     .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
+      console.log("here errors creating user")
+      console.log(err.errors[0]);
+      res.status(500).json({ error: err, message: err.errors[0].message });
     });
 });
 

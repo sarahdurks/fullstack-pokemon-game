@@ -1,21 +1,148 @@
-<!-- Create new team section -->
->
-<div class="container-fluid">
-    <div class="row d-flex justify-content-center">
-        <div class="col-12 col-lg-6">
-            <h1 class="banner_taital">Welcome to Pokémon Draft</h1>
-
-            <!-- Pick a Team Name Generator-->
-            {{> team-name}}
-            <!-- Pick a Logo-->
-            <p class="browse_text">Pick your team logo (Optional).</p>
-            <div class="banner_bt">
-                {{> logo}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" />
+<div class="container darkmode" id="sliderscreen">
+  <div class="row d-flex justify-content-center">
+    <div class="col-8 gy-8">
+      {{!-- <container class="darkmode"> --}}
+        <!-- Pick a Team Name Generator-->
+        {{> team-name}}
+        <!-- Pick a Logo-->
+        <div class="container mt-5 justify-content-center">
+          <div class="carousel-container row">
+             <p class="text-center mt-3 text-light">Select your logo and LFG!</p>
+            <div id="myCarousel" class="carousel slide justify-content-center" data-ride="carousel">
+              <div class="carousel-inner">
+                <!-- 0 - Gyrados -->
+                <div class="carousel-item active" data-slide-number="0">
+                  <img src="https://res.cloudinary.com/actionfdfds/image/upload/v1620709925/new-england-gyrados_wqdtrb.png" class="d-block w-100" alt="Gyrados" data-remote="https://res.cloudinary.com/actionfdfds/image/upload/v1620709925/new-england-gyrados_wqdtrb.png" data-type="image" data-toggle="lightbox" data-gallery="example-gallery" />
+                </div>
+                <!-- 1 - Fearow  -->
+                <div class="carousel-item" data-slide-number="1">
+                  <img src="https://res.cloudinary.com/actionfdfds/image/upload/v1620709925/baltimore-fearow_l3qafo.png" class="d-block w-100" alt="Fearow" data-remote="https://res.cloudinary.com/actionfdfds/image/upload/v1620709925/baltimore-fearow_l3qafo.png" data-type="image" data-toggle="lightbox" data-gallery="example-gallery" />
+                </div>
+                <!-- 2 - Dratini  -->
+                <div class="carousel-item" data-slide-number="2">
+                  <img src="https://res.cloudinary.com/actionfdfds/image/upload/v1620709925/indianapolis-dratini_sclaun.png" class="d-block w-100" alt="Dratini" data-remote="https://res.cloudinary.com/actionfdfds/image/upload/v1620709925/indianapolis-dratini_sclaun.png" data-type="image" data-toggle="lightbox" data-gallery="example-gallery" />
+                </div>
+                <!-- 3 - Seakings  -->
+                <div class="carousel-item" data-slide-number="3">
+                  <img src="https://res.cloudinary.com/actionfdfds/image/upload/v1620709925/miami-seakings_kdzkv2.png" class="d-block w-100" alt="Seakings" data-remote="https://res.cloudinary.com/actionfdfds/image/upload/v1620709925/kansas-city-geodues_lw3e5k.png" data-type="image" data-toggle="lightbox" data-gallery="example-gallery" />
+                </div>
+                <!-- 4 - Geodudes  -->
+                <div class="carousel-item" data-slide-number="4">
+                  <img src="https://res.cloudinary.com/actionfdfds/image/upload/v1620709925/kansas-city-geodues_lw3e5k.png" class="d-block w-100" alt="Geodudes" data-remote="https://res.cloudinary.com/actionfdfds/image/upload/v1620709925/kansas-city-geodues_lw3e5k.png" data-type="image" data-toggle="lightbox" data-gallery="example-gallery" />
+                </div>
+                <!-- 5 - Golbats  -->
+                <div class="carousel-item" data-slide-number="5">
+                  <img src="https://res.cloudinary.com/actionfdfds/image/upload/v1620709925/carolina-golbats_kqmg5x.png" class="d-block w-100" alt="Golbats" data-remote="https://res.cloudinary.com/actionfdfds/image/upload/v1620709925/carolina-golbats_kqmg5x.png" data-type="image" data-toggle="lightbox" data-gallery="example-gallery" />
+                </div>
+                <!-- 6 Pidgeys -->
+                <div class="carousel-item" data-slide-number="6">
+                  <img src="https://res.cloudinary.com/actionfdfds/image/upload/v1620709926/arizona-pidgeys_ys83uh.png" class="d-block w-100" alt="Pidgeys" data-remote="https://res.cloudinary.com/actionfdfds/image/upload/v1620709926/arizona-pidgeys_ys83uh.png" data-type="image" data-toggle="lightbox" data-gallery="example-gallery" />
+                </div>
+                <!-- 7 Digletts -->
+                <div class="carousel-item" data-slide-number="7">
+                  <img src="https://res.cloudinary.com/actionfdfds/image/upload/v1620709926/cleveland-digletts_anorjk.png" class="d-block w-100" alt="Cleveland Digletts" data-remote="https://res.cloudinary.com/actionfdfds/image/upload/v1620709926/cleveland-digletts_anorjk.png" data-type="image" data-toggle="lightbox" data-gallery="example-gallery" />
+                </div>
+                <!-- 8 Meowths -->
+                <div class="carousel-item" data-slide-number="8">
+                  <img src="https://res.cloudinary.com/actionfdfds/image/upload/v1620709926/detroit-meowths_fwatgh.png" class="d-block w-100" alt="Meowths" data-remote="https://res.cloudinary.com/actionfdfds/image/upload/v1620709926/detroit-meowths_fwatgh.png" data-type="image" data-toggle="lightbox" data-gallery="example-gallery" />
+                </div>
+                <!-- 9 Cubones  -->
+                <div class="carousel-item" data-slide-number="9">
+                  <img src="https://res.cloudinary.com/actionfdfds/image/upload/v1620709926/tampa-bay-cubone_uhpelk.png" class="d-block w-100" alt="Cuubones" data-remote="https://res.cloudinary.com/actionfdfds/image/upload/v1620709926/tampa-bay-cubone_uhpelk.png" data-type="image" data-toggle="lightbox" data-gallery="example-gallery" />
+                </div>
+                <!-- 10 Venasaurs  -->
+                <div class="carousel-item" data-slide-number="10">
+                  <img src="https://res.cloudinary.com/actionfdfds/image/upload/v1620709927/chicago-venusaurs_xcgmeb.png" class="d-block w-100" alt="Venasaurs" data-remote="https://res.cloudinary.com/actionfdfds/image/upload/v1620709927/chicago-venusaurs_xcgmeb.png" data-type="image" data-toggle="lightbox" data-gallery="example-gallery" />
+                </div>
+                <!-- 11 Voltorbs-->
+                <div class="carousel-item" data-slide-number="11">
+                  <img src="https://res.cloudinary.com/actionfdfds/image/upload/v1620709926/san-francisco-voltorbs_wgstzw.png" class="d-block w-100" alt="Voltorb Team Logo" data-remote="https://res.cloudinary.com/actionfdfds/image/upload/v1620709926/san-francisco-voltorbs_wgstzw.png" data-type="image" data-toggle="lightbox" data-gallery="example-gallery" />
+                </div>
+              </div>
             </div>
-
-            <div class="banner_bt">
-                <button id="create-team" class="btn btn-dark ms-4 p-4">Create Team</button>
+            <!--  Navigation -->
+            <div id="carousel-thumbs" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <div class="row mx-0">
+                    <!-- 0 - Gyrados -->
+                    <div id="carousel-selector-0" class="thumb col-2 px-1 py-2 selected" data-target="#myCarousel" data-slide-to="0">
+                      <img src="https://res.cloudinary.com/actionfdfds/image/upload/v1620709925/new-england-gyrados_wqdtrb.png" class="img-fluid navimg" alt="New England Gyrados" />
+                    </div>
+                    <!-- 1 - Fearow -->
+                    <div id="carousel-selector-1" class="thumb col-2 px-1 py-2" data-target="#myCarousel" data-slide-to="1">
+                      <img src="https://res.cloudinary.com/actionfdfds/image/upload/v1620709925/baltimore-fearow_l3qafo.png" class="img-fluid navimg" alt="Baltimore Fearow" />
+                    </div>
+                    <!-- 2 - Dratini -->
+                    <div id="carousel-selector-2" class="thumb col-2 px-1 py-2" data-target="#myCarousel" data-slide-to="2">
+                      <img src="https://res.cloudinary.com/actionfdfds/image/upload/v1620709925/indianapolis-dratini_sclaun.png" class="img-fluid navimg" alt="Indianapolis Dratini" />
+                    </div>
+                    <!-- 3 - Seakings -->
+                    <div id="carousel-selector-3" class="thumb col-2 px-1 py-2" data-target="#myCarousel" data-slide-to="3">
+                      <img src="https://res.cloudinary.com/actionfdfds/image/upload/v1620709925/miami-seakings_kdzkv2.png" class="img-fluid navimg" alt="Miami Seakings" />
+                    </div>
+                    <!-- 4 - Geodudes -->
+                    <div id="carousel-selector-4" class="thumb col-2 px-1 py-2" data-target="#myCarousel" data-slide-to="4">
+                      <img src="https://res.cloudinary.com/actionfdfds/image/upload/v1620709925/kansas-city-geodues_lw3e5k.png" class="img-fluid navimg" alt="Kansas City Geodudes" />
+                    </div>
+                    <!-- 5 - Golbats -->
+                    <div id="carousel-selector-5" class="thumb col-2 px-1 py-2" data-target="#myCarousel" data-slide-to="5">
+                      <img src="https://res.cloudinary.com/actionfdfds/image/upload/v1620709925/carolina-golbats_kqmg5x.png" class="img-fluid navimg" alt="Carolina Colbats" />
+                    </div>
+                  </div>
+                </div>
+                <!-- 6 -Pidgeys  x -->
+                <div class="carousel-item">
+                  <div class="row mx-0">
+                    <div id="carousel-selector-6" class="thumb col-2 px-1 py-2" data-target="#myCarousel" data-slide-to="6">
+                      <img src="https://res.cloudinary.com/actionfdfds/image/upload/v1620709926/arizona-pidgeys_ys83uh.png" class="img-fluid navimg" alt="Arizona Pidgeys" />
+                    </div>
+                    <!-- 7 - Digletts -->
+                    <div id="carousel-selector-7" class="thumb col-2 px-1 py-2" data-target="#myCarousel" data-slide-to="7">
+                      <img src="https://res.cloudinary.com/actionfdfds/image/upload/v1620709926/cleveland-digletts_anorjk.png" class="img-fluid navimg" alt="Cleveland Digletts" />
+                    </div>
+                    <!-- 8 - xMeowths-->
+                    <div id="carousel-selector-8" class="thumb col-2 px-1 py-2" data-target="#myCarousel" data-slide-to="8">
+                      <img src="https://res.cloudinary.com/actionfdfds/image/upload/v1620709926/detroit-meowths_fwatgh.png" class="img-fluid navimg" alt="Detroit Meowths" />
+                    </div>
+                    <!-- 9 - Cubone -->
+                    <div id="carousel-selector-9" class="thumb col-2 px-1 py-2" data-target="#myCarousel" data-slide-to="9">
+                      <img src="https://res.cloudinary.com/actionfdfds/image/upload/v1620709926/tampa-bay-cubone_uhpelk.png" class="img-fluid navimg" alt="Tampa Bay Cubones" />
+                    </div>
+                    <!-- 10 - Venusaurs -->
+                    <div id="carousel-selector-10" class="thumb col-2 px-1 py-2" data-target="#myCarousel" data-slide-to="10">
+                      <img src="https://res.cloudinary.com/actionfdfds/image/upload/v1620709927/chicago-venusaurs_xcgmeb.png" class="img-fluid navimg" alt="Chicago Venasaurs" />
+                    </div>
+                    <!-- 11- Voltorbs -->
+                    <div id="carousel-selector-11" class="thumb col-2 px-1 py-2" data-target="#myCarousel" data-slide-to="11">
+                      <img src="https://res.cloudinary.com/actionfdfds/image/upload/v1620709926/san-francisco-voltorbs_wgstzw.png" class="img-fluid navimg" alt="San Francisco Voltorbs" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Previous -->
+              <a class="carousel-control-prev" href="#carousel-thumbs" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <!-- Next -->
+              <a class="carousel-control-next" href="#carousel-thumbs" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
             </div>
+          </div>
         </div>
+       
+     {{!-- </container> --}}
+     <div class="d-flex justify-content-center p-2">
+    <button id="create-team" class="btn btn-danger m-4 p-2 fs-6 col-4 createbutton">Create Team</button>
     </div>
+  </div>
 </div>
+    <!--scripts for slider we may want to condense but need to verify working-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
