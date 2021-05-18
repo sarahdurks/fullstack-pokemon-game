@@ -99,7 +99,6 @@ console.log(pokemonTable)
                   speed: data.stats[5].base_stat,
                   imageSrc: data.sprites.front_default,
                   date: new Date().getDate(),
-                  selected: false
               };
               pokeData.push(eachPoke);
           }).then(() => {
